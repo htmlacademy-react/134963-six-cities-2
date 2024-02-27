@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { Helmet } from 'react-helmet-async';
 import styles from './not-found-page.module.css';
 
 function NotFoundPage(): JSX.Element {
   return (
     <div className= {styles.notFoundScreen}>
-      <Helmet>
-        <title>{'6 cities - Not Found'}</title>
-      </Helmet>
+      <title>{'6 cities - Not Found'}</title>
       <h1 className={styles.title}>404 NOT FOUND</h1>
       <p className={styles.text}>Я искал высоко и низко. Не нашел</p>
       <h3 >
