@@ -8,6 +8,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offerCount={5}/>
+    <App />
   </React.StrictMode>
 );
+
+
