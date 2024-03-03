@@ -1,9 +1,10 @@
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
 function OfferPage() {
   return (
     <div className="page">
-      <title>{'6 cities - Offer'}</title>
+      <Helmet>{'6 cities - Offer'}</Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">

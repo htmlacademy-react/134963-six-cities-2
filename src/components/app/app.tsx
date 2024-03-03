@@ -6,6 +6,7 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,10 @@ const router = createBrowserRouter([
 ]);
 
 function App(): JSX.Element {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <HelmetProvider>
+      <RouterProvider router={router}></RouterProvider>;
+    </HelmetProvider>);
 }
 
 export default App;
