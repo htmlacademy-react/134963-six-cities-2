@@ -1,12 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 import Card from '../../components/card/card';
 import Logo from '../../components/logo/logo';
+import { City, Offer } from '../../types/offer';
 
 type MainPageProps = {
-    offerCount: number;
+    // offerCount: number;
+    offers: Offer[];
 }
 
-function MainPage ({offerCount}: MainPageProps): JSX.Element {
+function MainPage ({offers}: MainPageProps): JSX.Element {
+
+  const cities: City[] = offers.map((offer) => offer.city);
   return (
     <div className="page page--gray page--main">
       <Helmet>{'6 cities - Main'}</Helmet>
@@ -79,7 +83,7 @@ function MainPage ({offerCount}: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offerCount} places to stay in Amsterdam</b>
+              <b className="places__found">places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
