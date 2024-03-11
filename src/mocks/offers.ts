@@ -1,6 +1,6 @@
-import { Offers } from '../types/offer';
+import { OfferTypes } from '../types/offer';
 
-export const offers: Offers = [
+export const offers: OfferTypes = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
@@ -51,7 +51,7 @@ export const offers: Offers = [
     id: '4qa5f761-c17d-4171-59wd-e0xa52627u50',
     title: 'Luxurious country house 3 hours from the village. one on one with wild nature.',
     type: 'house',
-    price: 10,
+    price: 792,
     city: {
       name: 'Addis Ababa',
       location: {

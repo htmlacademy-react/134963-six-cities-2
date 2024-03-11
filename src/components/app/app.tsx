@@ -7,10 +7,10 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
+import { OfferType } from '../../types/offer';
 
 type AppProps = {
-  offers: Offer[];
+  offers: OfferType[];
 }
 
 function App({offers}: AppProps): JSX.Element {

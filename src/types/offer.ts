@@ -1,4 +1,4 @@
-export type Offer = {
+export type OfferType = {
     id: string;
     title: string;
     type: string;
@@ -28,9 +28,9 @@ export type Host = {
     isPro: boolean;
 };
 
-export type Offers = Offer[];
+export type OfferTypes = OfferType[];
 
-export type FullOffer = Omit<Offer, 'previewImage'> & {
+export type FullOffer = Omit<OfferType, 'previewImage'> & {
     description: string | string[];
     bedrooms: number;
     goods: string[];
