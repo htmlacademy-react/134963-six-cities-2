@@ -1,37 +1,27 @@
+import { useState } from 'react';
+
 function Locations(): JSX.Element {
+  const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+  const [activeTab , setActiveCity] = useState('');
+
+  const handleCityClick = (city: string) => {
+    setActiveCity(city);
+  };
+
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Paris</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Cologne</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Brussels</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item tabs__item--active">
-            <span>Amsterdam</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Hamburg</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Dusseldorf</span>
-          </a>
-        </li>
+        {cities.map((city) => (
+          <li key={city} className="locations__item">
+            <a
+              className={`locations__item-link tabs__item ${activeTab === city ? 'tabs__item--active' : ''}`}
+              onClick={() => handleCityClick(city)}
+              href="#"
+            >
+              <span>{city}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
   );
