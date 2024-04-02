@@ -10,6 +10,7 @@ type FavoritesPageProps = {
 
 function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
   const cities = [...new Set(offers.map((offer) => offer.city.name))];
+  const hasFavorites = offers.some((offer) => offer.isFavorite);
 
   return (
     <div className="page">
@@ -20,11 +21,15 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              {cities.map((city) => (
-                <LocationItem key={city} city={city} offers={offers} />
-              ))}
-            </ul>
+            {hasFavorites ? (
+              <ul className="favorites__list">
+                {cities.map((city) => (
+                  <LocationItem key={city} city={city} offers={offers} />
+                ))}
+              </ul>
+            ) : (
+              <p>No favorite offers yet. Add some favorites!</p>
+            )}
           </section>
         </div>
       </main>

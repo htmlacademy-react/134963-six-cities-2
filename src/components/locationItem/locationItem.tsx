@@ -8,22 +8,26 @@ type LocationItemProps = {
 
 function LocationItem ({city, offers }:LocationItemProps) {
 
+  const favoriteOffers = offers.filter((offer) => offer.city.name === city && offer.isFavorite);
+
   return (
     <li className="favorites__locations-items">
-      <div className="favorites__locations locations locations--current">
-        <div className="locations__item">
-          <a className="locations__item-link" href="#">
-            <span>{city}</span>
-          </a>
-        </div>
-      </div>
-      <div className="favorites__places">
-        {offers
-          .filter((offer) => offer.city.name === city)
-          .map((offer) => (
-            <FavoriteCard key={offer.id} offer={offer} />
-          ))}
-      </div>
+      {favoriteOffers.length > 0 && (
+        <>
+          <div className="favorites__locations locations locations--current">
+            <div className="locations__item">
+              <a className="locations__item-link" href="#">
+                <span>{city}</span>
+              </a>
+            </div>
+          </div>
+          <div className="favorites__places">
+            {favoriteOffers.map((offer) => (
+              <FavoriteCard key={offer.id} offer={offer} />
+            ))}
+          </div>
+        </>
+      )}
     </li>
   );
 }
