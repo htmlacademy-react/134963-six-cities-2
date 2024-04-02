@@ -30,7 +30,7 @@ export const offers: OfferTypes = [
     type: 'apartment',
     price: 18000,
     city: {
-      name: 'Tomsk',
+      name: 'Amsterdam',
       location: {
         latitude: 23.64448112317,
         longitude: 7.673877537499948,
@@ -66,7 +66,7 @@ export const offers: OfferTypes = [
       zoom: 1
     },
     isFavorite: false,
-    isPremium: false,
+    isPremium: true,
     rating: 9,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/18.jpg'
   },
@@ -88,7 +88,7 @@ export const offers: OfferTypes = [
       longitude: 37.3656,
       zoom: 1
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 11,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/20.jpg'
