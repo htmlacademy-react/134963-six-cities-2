@@ -30,13 +30,13 @@ export type Host = {
 
 export type OfferTypes = OfferType[];
 
-export type FullOffer = Omit<OfferType, 'previewImage'> & {
+export type FullOffer = {
     description: string | string[];
     bedrooms: number;
     goods: string[];
     host: Host;
     images: string[];
     maxAdults: number;
-  };
+  } & OfferType;
 
 
