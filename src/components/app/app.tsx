@@ -7,10 +7,10 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-import { OfferType } from '../../types/offer';
+import { FullOffer } from '../../types/offer';
 
 type AppProps = {
-  offers: OfferType[];
+  offers: FullOffer[];
 }
 
 function App({offers}: AppProps): JSX.Element {
@@ -30,8 +30,8 @@ function App({offers}: AppProps): JSX.Element {
           element: <LoginPage />,
         },
         {
-          path: AppRoute.Offer,
-          element: <OfferPage />,
+          path: `${AppRoute.Offer}/:id`,
+          element: <OfferPage offers = {offers} />,
         },
         {
           path: '*',
