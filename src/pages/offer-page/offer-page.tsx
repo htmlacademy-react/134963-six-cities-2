@@ -3,6 +3,7 @@ import { FullOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
 import OfferCommentForm from '../../components/offer-comment-form/offer-comment-form';
 import Header from '../../components/header/header';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 type OfferPageProp = {
   offers: FullOffer[];
@@ -14,7 +15,7 @@ function OfferPage({offers}: OfferPageProp): JSX.Element {
   const offerInfo = offers.find((offer) => offer.id === id);
 
   if (!offerInfo) {
-    return <Header />;
+    return <NotFoundPage />;
   }
 
   return (
