@@ -1,5 +1,5 @@
 import { OfferType } from '../../types/offer';
-import FavoriteCard from '../favoriteCard/favoriteCard';
+import FavoriteCard from '../favorite-card/favorite-card.tsx';
 
 type LocationItemProps = {
     offers:OfferType[];
