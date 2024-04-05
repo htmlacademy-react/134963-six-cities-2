@@ -3,7 +3,6 @@ import { FullOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
 import OfferCommentForm from '../../components/offer-comment-form/offer-comment-form';
 import Header from '../../components/header/header';
-import NotFoundPage from '../not-found-page/not-found-page';
 
 type OfferPageProp = {
   offers: FullOffer[];
@@ -11,12 +10,8 @@ type OfferPageProp = {
 
 function OfferPage({offers}: OfferPageProp): JSX.Element {
 
-  const {id} = useParams();
-  const offerInfo = offers.find((offer) => offer.id === id);
-
-  if (!offerInfo) {
-    return <NotFoundPage />;
-  }
+  const {offerId} = useParams();
+  const offerInfo = offers.find((offer) => offer.id === offerId);
 
   return (
     <div className="page">
@@ -53,30 +48,30 @@ function OfferPage({offers}: OfferPageProp): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: `${(offerInfo.rating || 0) / 5 * 100}%` }}></span>
+                  <span style={{ width: `${(offerInfo?.rating || 0) / 5 * 100}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{offerInfo?.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  {offerInfo.type ?? ''}
+                  {offerInfo?.type ?? ''}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
                   {offerInfo?.bedrooms ?? 0} {offerInfo?.bedrooms && offerInfo?.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  {offerInfo.maxAdults ?? 0} {offerInfo.maxAdults && offerInfo.maxAdults > 1 ? 'adults' : 'adult'}
+                  {offerInfo?.maxAdults ?? 0} {offerInfo?.maxAdults && offerInfo?.maxAdults > 1 ? 'adults' : 'adult'}
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;{offerInfo.price}</b>
+                <b className="offer__price-value">&euro;{offerInfo?.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {offerInfo.goods.map((good) => (
+                  {offerInfo?.goods.map((good) => (
                     <li className="offer__inside-item" key={good}>{good}</li>
                   ))}
                 </ul>
@@ -88,9 +83,9 @@ function OfferPage({offers}: OfferPageProp): JSX.Element {
                     <img className="offer__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="offer__user-name">
-                    {offerInfo.host.name}
+                    {offerInfo?.host.name}
                   </span>
-                  {offerInfo.host.isPro && <span className="offer__user-status">Pro</span>}
+                  {offerInfo?.host.isPro && <span className="offer__user-status">Pro</span>}
                 </div>
                 <div className="offer__description">
                   <p className="offer__text">
