@@ -10,8 +10,8 @@ type OfferPageProp = {
 
 function OfferPage({offers}: OfferPageProp): JSX.Element {
 
-  const {offerId} = useParams();
-  const offerInfo = offers.find((offer) => offer.id === offerId);
+  const {id} = useParams();
+  const offerInfo = offers.find((offer) => offer.id === id);
 
   return (
     <div className="page">
