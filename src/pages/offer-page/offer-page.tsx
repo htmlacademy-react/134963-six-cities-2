@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { FullOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
+import { calculateRatingPercentage } from '../../utils/utils';
 import OfferCommentForm from '../../components/offer-comment-form/offer-comment-form';
 import Header from '../../components/header/header';
 
@@ -48,7 +49,7 @@ function OfferPage({offers}: OfferPageProp): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: `${(offerInfo?.rating || 0) / 5 * 100}%` }}></span>
+                  <span style={{ width: `${calculateRatingPercentage(offerInfo?.rating ?? 0)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{offerInfo?.rating}</span>

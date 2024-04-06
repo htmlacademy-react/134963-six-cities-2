@@ -48,7 +48,7 @@ export const offers: FullOffer[] = [
       name: 'Angelina',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4,
     bedrooms: 1,
@@ -102,7 +102,7 @@ export const offers: FullOffer[] = [
       name: 'Angelina',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4,
     bedrooms: 1,
@@ -170,7 +170,7 @@ export const offers: FullOffer[] = [
     type: 'house',
     price: 10,
     city: {
-      name: 'moscow',
+      name: 'Moscow',
       location: {
         latitude: 55.4507,
         longitude: 37.3656,
