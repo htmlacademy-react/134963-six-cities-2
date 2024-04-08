@@ -6,33 +6,41 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import { HelmetProvider } from 'react-helmet-async';
+import { FullOffer } from '../../types/offer';
 
+type AppProps = {
+  offers: FullOffer[];
+}
 
-const router = createBrowserRouter([
-  {
-    path: AppRoute.Main,
-    element: <MainPage offerCount={7}/>
-  },
-  {
-    path: AppRoute.Favorites,
-    element: <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><FavoritesPage /></PrivateRoute>,
-  },
-  {
-    path: AppRoute.Login,
-    element: <LoginPage />,
-  },
-  {
-    path: AppRoute.Offer,
-    element: <OfferPage />,
-  },
-  {
-    path: '*',
-    element: <NotFoundPage />,
-  }
-]);
-
-function App(): JSX.Element {
-  return <RouterProvider router={router}></RouterProvider>;
+function App({offers}: AppProps): JSX.Element {
+  return (
+    <HelmetProvider>
+      <RouterProvider router={createBrowserRouter([
+        {
+          path: AppRoute.Main,
+          element: <MainPage offers = {offers}/>
+        },
+        {
+          path: AppRoute.Favorites,
+          element: <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} ><FavoritesPage offers = {offers}/></PrivateRoute>,
+        },
+        {
+          path: AppRoute.Login,
+          element: <LoginPage />,
+        },
+        {
+          path: `${AppRoute.Offer}/:id`,
+          element: <OfferPage offers = {offers} />,
+        },
+        {
+          path: '*',
+          element: <NotFoundPage />,
+        }
+      ])}
+      >
+      </RouterProvider>
+    </HelmetProvider>);
 }
 
 export default App;
