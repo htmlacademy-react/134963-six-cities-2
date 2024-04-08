@@ -5,15 +5,16 @@ import LocationItem from '../../components/location-item/location-item.tsx';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 
-
 type FavoritesPageProps = {
   offers: OfferType[];
-}
+};
 
-function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
+function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
   const hasFavorites = favoriteOffers.length > 0;
-  const cities = Array.from(new Set(favoriteOffers.map((offer) => offer.city.name)));
+  const cities = Array.from(
+    new Set(favoriteOffers.map((offer) => offer.city.name))
+  );
 
   return (
     <div className="page">
