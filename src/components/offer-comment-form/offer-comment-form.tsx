@@ -1,14 +1,15 @@
 import { ChangeEvent, Fragment, useState } from 'react';
+import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const';
 
 interface FormData {
-    rating: string | null;
-    review: string;
-  }
+  rating: string | null;
+  review: string;
+}
 
-  interface RatingOption {
-    value: string;
-    title: string;
-  }
+interface RatingOption {
+  value: string;
+  title: string;
+}
 
 const ratingOptions: RatingOption[] = [
   { value: '5', title: 'perfect' },
@@ -21,20 +22,29 @@ const ratingOptions: RatingOption[] = [
 function OfferCommentForm(): JSX.Element {
   const [formData, setFormData] = useState<FormData>({
     rating: null,
-    review: ''
+    review: '',
   });
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
+  const isValid =
+    !formData.rating ||
+    formData.review.length < MIN_REVIEW_LENGTH ||
+    formData.review.length > MAX_REVIEW_LENGTH;
+
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+      <label className="reviews__label form__label" htmlFor="review">
+        Your review
+      </label>
       <div className="reviews__rating-form form__rating">
         {ratingOptions.map((option) => (
           <Fragment key={option.value}>
@@ -61,7 +71,8 @@ function OfferCommentForm(): JSX.Element {
       </div>
       <textarea
         className="reviews__textarea form__textarea"
-        id="review" name="review"
+        id="review"
+        name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleInputChange}
         value={formData.review}
@@ -69,14 +80,22 @@ function OfferCommentForm(): JSX.Element {
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-                      To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          To submit review please make sure to set{' '}
+          <span className="reviews__star">rating</span> and describe your stay
+          with at least{' '}
+          <b className="reviews__text-amount">{MIN_REVIEW_LENGTH} characters</b>
+          .
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!formData.rating || formData.review.length < 50}>Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={isValid}
+        >
+          Submit
+        </button>
       </div>
     </form>
   );
 }
 
 export default OfferCommentForm;
-
-

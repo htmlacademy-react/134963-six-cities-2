@@ -13,3 +13,6 @@ export enum AuthorizationStatus {
 
 export const MAX_RATING = 5;
 
+export const MIN_REVIEW_LENGTH = 50;
+export const MAX_REVIEW_LENGTH = 300;
+

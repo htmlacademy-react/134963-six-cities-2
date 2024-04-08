@@ -102,7 +102,7 @@ export const offers: FullOffer[] = [
       name: 'Angelina',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
-    isFavorite: true,
+    isFavorite: false,
     isPremium: false,
     rating: 4,
     bedrooms: 1,
@@ -206,7 +206,7 @@ export const offers: FullOffer[] = [
       name: 'Angelina',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
-    isFavorite: true,
+    isFavorite: false,
     isPremium: false,
     rating: 11,
     bedrooms: 3,
