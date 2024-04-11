@@ -10,9 +10,9 @@ export const offers: FullOffer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
-        zoom: 8
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 13
       }
     },
     images: [
@@ -24,9 +24,9 @@ export const offers: FullOffer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/3.jpg'
     ],
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 13
     },
     goods: [
       'Towels',
@@ -64,9 +64,9 @@ export const offers: FullOffer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 23.64448112317,
-        longitude: 7.673877537499948,
-        zoom: 11
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
+        zoom: 13
       }
     },
     images: [
@@ -78,9 +78,9 @@ export const offers: FullOffer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     location: {
-      latitude: 23.64448112317,
-      longitude: 7.673877537499948,
-      zoom: 11
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 13
     },
     goods: [
       'Cable TV',
@@ -116,11 +116,11 @@ export const offers: FullOffer[] = [
     type: 'house',
     price: 792,
     city: {
-      name: 'Addis Ababa',
+      name: 'Amsterdam',
       location: {
-        latitude: 11.775113488,
-        longitude: 9.419346631,
-        zoom: 1
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
+        zoom: 13
       }
     },
     images: [
@@ -132,9 +132,9 @@ export const offers: FullOffer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/18.jpg'
     ],
     location: {
-      latitude: 11.775113488,
-      longitude: 9.419346631,
-      zoom: 1
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 13
     },
     goods: [
       'Laptop friendly workspace',
@@ -170,11 +170,11 @@ export const offers: FullOffer[] = [
     type: 'house',
     price: 10,
     city: {
-      name: 'Moscow',
+      name: 'Amsterdam',
       location: {
-        latitude: 55.4507,
-        longitude: 37.3656,
-        zoom: 1
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
+        zoom: 13
       }
     },
     images: [
@@ -186,9 +186,9 @@ export const offers: FullOffer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/4.jpg'
     ],
     location: {
-      latitude: 55.4507,
-      longitude: 37.3656,
-      zoom: 1
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 13
     },
     goods: [
       'Breakfast',
@@ -208,7 +208,7 @@ export const offers: FullOffer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 11,
+    rating: 13,
     bedrooms: 3,
     maxAdults: 5,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/20.jpg'

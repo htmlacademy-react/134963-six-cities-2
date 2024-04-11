@@ -1,16 +1,16 @@
 import Card from '../card/card';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { OfferType } from '../../types/offer';
 
-type OfferProps = {offers:OfferType[]};
+type OfferProps = {
+  offers:OfferType[];
+    onCardHover: (id: string | null) => void;
+  };
 
-function OfferList({offers}: OfferProps): JSX.Element {
-
-  const [, setActiveId] = useState<string | null>(null);
-
-  const handleCardHover: (id: string | null) => void = useCallback((id) => {
-    setActiveId(id || null);
-  }, []);
+function OfferList({offers, onCardHover}: OfferProps): JSX.Element {
+  const handleCardHover = useCallback((id: string | null) => {
+    onCardHover(id);
+  }, [onCardHover]);
 
   return (
     <div className="cities__places-list places__list tabs__content">
