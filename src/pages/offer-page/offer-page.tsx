@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { calculateRatingPercentage, capitalizeFirstLetter } from '../../utils/utils';
 import OfferCommentForm from '../../components/offer-comment-form/offer-comment-form';
 import Header from '../../components/header/header';
+import Map from '../../components/map/map';
 
 type OfferPageProp = {
   offers: FullOffer[];
@@ -162,7 +163,7 @@ function OfferPage({ offers }: OfferPageProp): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map offers={offers} mapClass="offer__map map"/>
         </section>
         <div className="container">
           <section className="near-places places">
