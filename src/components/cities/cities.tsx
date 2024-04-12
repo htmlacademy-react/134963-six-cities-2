@@ -22,7 +22,7 @@ function Cities({offers}: CitiesProps): JSX.Element {
         <OfferList offers={offers} onCardHover={handleCardHover} />
       </section>
       <div className="cities__right-section">
-        <Map offers={offers} activeOfferId={activeOfferId} mapClass="cities__map map" />
+        <Map offers={offers} city={offers[0].city} activeOfferId={activeOfferId} mapClass="cities__map" />
       </div>
     </div>
   );

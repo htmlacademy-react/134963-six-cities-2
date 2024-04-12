@@ -1,56 +1,47 @@
 import { useEffect, useRef } from 'react';
+import clsx from 'clsx';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { OfferType } from '../../types/offer';
+import { OfferType, City } from '../../types/offer';
 import iconUrl from '../../../markup/img/pin.svg';
 import activeIconUrl from '../../../markup/img/pin-active.svg';
+import useMap from '../../hooks/use-map';
 
 type TMapProps = {
   offers: OfferType[];
+  city: City;
   mapClass: string;
-  activeOfferId: string | null | undefined;
+  activeOfferId: string | null;
 };
 
-function Map({ offers, mapClass, activeOfferId }: TMapProps): JSX.Element {
+const customIcon = L.icon({
+  iconUrl,
+  iconSize: [26, 39],
+  iconAnchor: [13, 39],
+});
+
+const activeCustomIcon = L.icon({
+  iconUrl: activeIconUrl,
+  iconSize: [26, 39],
+  iconAnchor: [13, 39],
+});
+
+function Map({
+  offers,
+  mapClass,
+  activeOfferId,
+  city,
+}: TMapProps): JSX.Element {
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const map = useRef<L.Map | null>(null);
+  const map = useMap(mapRef, city);
+  const markersRef = useRef<L.Marker[]>([]);
 
   useEffect(() => {
-    if (mapRef.current && offers.length > 0) {
-      map.current = L.map(mapRef.current, {
-        center: [offers[0].location.latitude, offers[0].location.longitude],
-        zoom: 13,
+    if (map) {
+      markersRef.current.forEach((marker) => {
+        map.removeLayer(marker);
       });
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map.current);
-
-      const customIcon = L.icon({
-        iconUrl,
-        iconSize: [26, 39],
-        iconAnchor: [13, 39],
-      });
-
-      const activeCustomIcon = L.icon({
-        iconUrl: activeIconUrl,
-        iconSize: [26, 39],
-        iconAnchor: [13, 39],
-      });
-
-      const centerMapOnMarker = (marker: L.Marker) => {
-        if (map.current) {
-          map.current.setView(marker.getLatLng(), map.current.getZoom());
-        }
-      };
-
-      if (map.current) {
-        map.current.eachLayer((layer) => {
-          if (layer instanceof L.Marker) {
-            map.current!.removeLayer(layer);
-          }
-        });
-      }
+      markersRef.current = [];
 
       offers.forEach((offer) => {
         const marker = L.marker(
@@ -58,30 +49,25 @@ function Map({ offers, mapClass, activeOfferId }: TMapProps): JSX.Element {
           {
             icon: offer.id === activeOfferId ? activeCustomIcon : customIcon,
           }
-        ).addTo(map.current!);
+        ).addTo(map);
 
         marker.on('click', function (this: L.Marker) {
-          centerMapOnMarker(this);
+          map.setView(this.getLatLng(), map.getZoom());
         });
+
+        markersRef.current.push(marker);
       });
 
-      if (activeOfferId) {
-        const activeOffer = offers.find((offer) => offer.id === activeOfferId);
-        if (activeOffer) {
-          const activeMarker = L.marker([activeOffer.location.latitude, activeOffer.location.longitude], {
-            icon: activeCustomIcon,
-          }).addTo(map.current);
-          centerMapOnMarker(activeMarker);
-        }
+      const activeMarker = markersRef.current.find(
+        (marker) => marker.options.icon === activeCustomIcon
+      );
+      if (activeMarker) {
+        map.setView(activeMarker.getLatLng(), map.getZoom());
       }
-
-      return () => {
-        map.current?.remove();
-      };
     }
-  }, [offers, activeOfferId]);
+  }, [map, offers, activeOfferId]);
 
-  return <section ref={mapRef} className={mapClass}></section>;
+  return <section ref={mapRef} className={clsx(mapClass, 'map')}></section>;
 }
 
 export default Map;
