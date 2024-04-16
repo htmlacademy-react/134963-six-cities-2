@@ -12,12 +12,12 @@ import Map from '../../components/map/map';
 import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
 
-type OfferPageProp = {
+type TOfferPageProp = {
   offers: FullOffer[];
   reviews: Review[];
 };
 
-function OfferPage({ offers, reviews }: OfferPageProp): JSX.Element {
+function OfferPage({ offers, reviews }: TOfferPageProp): JSX.Element {
   const { id } = useParams();
   const offerInfo = offers.find((offer) => offer.id === id);
   const nearestOffers = offers.slice(0, 3);
