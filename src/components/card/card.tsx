@@ -7,19 +7,20 @@ import CardRating from '../card-rating/card-rating';
 
 type CardProps = {
   offer: OfferType;
+  block: string;
   onMouseOver?: (id: string | null) => void;
 };
 
-function Card({ offer, onMouseOver }: CardProps): JSX.Element {
+function Card({ offer, onMouseOver, block }: CardProps): JSX.Element {
   const { title, type, price, isFavorite, rating, previewImage } = offer;
 
   return (
     <article
-      className="cities__card place-card"
+      className={`${block}__card place-card`}
       onMouseEnter={() => onMouseOver && onMouseOver(offer.id)}
       onMouseLeave={() => onMouseOver && onMouseOver(null)}
     >
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${block}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img
             className="place-card__image"

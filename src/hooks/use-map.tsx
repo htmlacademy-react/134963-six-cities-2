@@ -2,14 +2,6 @@ import { useEffect, useState, MutableRefObject, useRef } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import { City } from '../types/offer';
 
-const tileLayer = new TileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution:
-        '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }
-);
-
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
@@ -17,6 +9,14 @@ function useMap(
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
+
+  const tileLayer = new TileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution:
+          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }
+  );
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {

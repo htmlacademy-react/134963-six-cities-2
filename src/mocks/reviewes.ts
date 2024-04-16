@@ -22,5 +22,16 @@ export const reviews : Reviews = [
     },
     'comment': 'A place where anything is possible',
     'rating': 4
-  }
+  },
+  {
+    'id': 'e67dafd5-b953-4a30-8c8d-bd383cd7t62a',
+    'date': '1994-06-08T14:14:56.569Z',
+    'user': {
+      'name': 'Ser Mol',
+      'avatarUrl': 'https://15.design.htmlacademy.pro/static/avatar/8.jpg',
+      'isPro': false
+    },
+    'comment': 'Почему падает метеорит?',
+    'rating': 3
+  },
 ];
