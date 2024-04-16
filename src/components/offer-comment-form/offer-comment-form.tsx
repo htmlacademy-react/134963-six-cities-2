@@ -1,17 +1,17 @@
 import { ChangeEvent, Fragment, useState } from 'react';
 import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const';
 
-interface FormData {
+type TFormData = {
   rating: string | null;
   review: string;
 }
 
-interface RatingOption {
+type TRatingOption = {
   value: string;
   title: string;
 }
 
-const ratingOptions: RatingOption[] = [
+const ratingOptions: TRatingOption[] = [
   { value: '5', title: 'perfect' },
   { value: '4', title: 'good' },
   { value: '3', title: 'not bad' },
@@ -20,7 +20,7 @@ const ratingOptions: RatingOption[] = [
 ];
 
 function OfferCommentForm(): JSX.Element {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<TFormData>({
     rating: null,
     review: '',
   });

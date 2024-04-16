@@ -5,13 +5,13 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 import CardBookmarkButton from '../card-bookmark-button/card-bookmark-button';
 import CardRating from '../card-rating/card-rating';
 
-type CardProps = {
+type TCardProps = {
   offer: OfferType;
   block: string;
   onMouseOver?: (id: string | null) => void;
 };
 
-function Card({ offer, onMouseOver, block }: CardProps): JSX.Element {
+function Card({ offer, onMouseOver, block }: TCardProps): JSX.Element {
   const { title, type, price, isFavorite, rating, previewImage } = offer;
 
   return (

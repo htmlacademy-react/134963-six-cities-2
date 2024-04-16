@@ -4,11 +4,11 @@ import { OfferType } from '../../types/offer';
 import { useState } from 'react';
 import OfferList from '../offer-list/offer-list';
 
-type CitiesProps = {
+type TCitiesProps = {
   offers: OfferType[];
 };
 
-function Cities({ offers }: CitiesProps): JSX.Element {
+function Cities({ offers }: TCitiesProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
 
   const handleCardHover = (id: string | null) => {

@@ -2,7 +2,7 @@ import Card from '../card/card';
 import { useCallback } from 'react';
 import { OfferType } from '../../types/offer';
 
-type OfferProps = {
+type TOfferProps = {
   offers:OfferType[];
   listBlock: string;
   block: string;
@@ -10,7 +10,7 @@ type OfferProps = {
     onCardHover?: (id: string | null) => void;
   };
 
-function OfferList({offers, onCardHover, listBlock, extraClass, block}: OfferProps): JSX.Element {
+function OfferList({offers, onCardHover, listBlock, extraClass, block}: TOfferProps): JSX.Element {
   const handleCardHover = useCallback((id: string | null) => {
     if (onCardHover) {
       onCardHover(id);

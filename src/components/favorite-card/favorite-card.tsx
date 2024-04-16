@@ -5,11 +5,11 @@ import CardBookmarkButton from '../card-bookmark-button/card-bookmark-button';
 import CardRating from '../card-rating/card-rating';
 import { capitalizeFirstLetter } from '../../utils/utils';
 
-type FavoriteCardProps = {
+type TFavoriteCardProps = {
   offer: OfferType;
 };
 
-function FavoriteCard({ offer }: FavoriteCardProps): JSX.Element {
+function FavoriteCard({ offer }: TFavoriteCardProps): JSX.Element {
   const {
     title,
     type,
