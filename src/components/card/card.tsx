@@ -20,6 +20,10 @@ function Card({ offer, onMouseOver, block }: CardProps): JSX.Element {
       onMouseEnter={() => onMouseOver && onMouseOver(offer.id)}
       onMouseLeave={() => onMouseOver && onMouseOver(null)}
     >
+      {offer.isPremium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>}
       <div className={`${block}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img
