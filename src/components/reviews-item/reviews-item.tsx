@@ -1,5 +1,5 @@
 import { Review } from '../../types/reviews';
-import { calculateRatingPercentage, formatDate, convertDateTime } from '../../utils/utils';
+import { calculateRatingPercentage, formatToMonthYear, formatDateToISO } from '../../utils/utils';
 
 type TReviewItem ={
     review: Review;
@@ -36,8 +36,8 @@ function ReviewItem({review}: TReviewItem): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime={convertDateTime(review.date)}>
-          {formatDate(review.date)}
+        <time className="reviews__time" dateTime={formatDateToISO(review.date)}>
+          {formatToMonthYear(review.date)}
         </time>
       </div>
     </li>

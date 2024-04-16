@@ -9,7 +9,7 @@ export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function formatDate(dateString: string): string {
+export function formatToMonthYear(dateString: string): string {
   const date = dayjs(dateString);
 
   const formattedDate = date.format('MMMM YYYY');
@@ -17,7 +17,7 @@ export function formatDate(dateString: string): string {
   return formattedDate;
 }
 
-export function convertDateTime(dateTime: string): string {
+export function formatDateToISO(dateTime: string): string {
   const parsedDate = dayjs(dateTime, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
 
   const formattedDate = parsedDate.format('YYYY-MM-DD');
