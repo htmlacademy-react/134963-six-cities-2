@@ -26,7 +26,6 @@ function Cities({ offers }: TCitiesProps): JSX.Element {
           listBlock="cities__places-list"
           block="cities"
           onCardHover={handleCardHover}
-          extraClass="tabs__content"
         />
       </section>
       <div className="cities__right-section">
