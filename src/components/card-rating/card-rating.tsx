@@ -1,10 +1,10 @@
 import { calculateRatingPercentage } from '../../utils/utils';
 
-type CardRatingProps = {
+type TCardRatingProps = {
     rating: number;
   };
 
-function CardRating({rating}: CardRatingProps): JSX.Element {
+function CardRating({rating}: TCardRatingProps): JSX.Element {
 
   return (
     <div className="place-card__rating rating">

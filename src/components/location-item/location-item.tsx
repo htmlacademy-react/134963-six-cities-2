@@ -1,12 +1,12 @@
 import { OfferType } from '../../types/offer';
 import FavoriteCard from '../favorite-card/favorite-card.tsx';
 
-type LocationItemProps = {
+type TLocationItemProps = {
     offers:OfferType[];
     city: string;
 };
 
-function LocationItem ({city, offers }:LocationItemProps) {
+function LocationItem ({city, offers }: TLocationItemProps) {
 
   const favoriteOffers = offers.filter((offer) => offer.city.name === city && offer.isFavorite);
 

@@ -8,12 +8,14 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { FullOffer } from '../../types/offer';
+import { Review } from '../../types/reviews';
 
-type AppProps = {
+type TAppProps = {
   offers: FullOffer[];
+  reviews: Review[];
 }
 
-function App({offers}: AppProps): JSX.Element {
+function App({offers, reviews}: TAppProps): JSX.Element {
   return (
     <HelmetProvider>
       <RouterProvider router={createBrowserRouter([
@@ -31,7 +33,7 @@ function App({offers}: AppProps): JSX.Element {
         },
         {
           path: `${AppRoute.Offer}/:id`,
-          element: <OfferPage offers = {offers} />,
+          element: <OfferPage offers = {offers} reviews={reviews} />,
         },
         {
           path: '*',

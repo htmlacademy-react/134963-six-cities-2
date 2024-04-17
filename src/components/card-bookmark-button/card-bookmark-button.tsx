@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 
-type CardBookmarkButtonProps = {
+type TCardBookmarkButtonProps = {
     isFavorite: boolean;
   }
 
-function CardBookmarkButton({ isFavorite }: CardBookmarkButtonProps): JSX.Element {
+function CardBookmarkButton({ isFavorite }: TCardBookmarkButtonProps): JSX.Element {
   return (
     <button
       className={clsx('place-card__bookmark-button button', {

@@ -4,9 +4,11 @@ import { OfferType } from '../../types/offer';
 import { useState } from 'react';
 import OfferList from '../offer-list/offer-list';
 
-type CitiesProps = {offers:OfferType[]};
+type TCitiesProps = {
+  offers: OfferType[];
+};
 
-function Cities({offers}: CitiesProps): JSX.Element {
+function Cities({ offers }: TCitiesProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
 
   const handleCardHover = (id: string | null) => {
@@ -19,10 +21,20 @@ function Cities({offers}: CitiesProps): JSX.Element {
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">places to stay in Amsterdam</b>
         <Sorting />
-        <OfferList offers={offers} onCardHover={handleCardHover} />
+        <OfferList
+          offers={offers}
+          listBlock="cities__places-list"
+          block="cities"
+          onCardHover={handleCardHover}
+        />
       </section>
       <div className="cities__right-section">
-        <Map offers={offers} city={offers[0].city} activeOfferId={activeOfferId} mapClass="cities__map" />
+        <Map
+          offers={offers}
+          city={offers[0].city}
+          activeOfferId={activeOfferId}
+          mapClass="cities__map"
+        />
       </div>
     </div>
   );

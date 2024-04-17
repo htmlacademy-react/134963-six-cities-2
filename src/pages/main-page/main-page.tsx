@@ -4,12 +4,12 @@ import Locations from '../../components/locations/locations';
 import { OfferType } from '../../types/offer';
 import Cities from '../../components/cities/cities';
 
-type MainPageProps = {
+type TMainPageProps = {
     // offerCount: number;
     offers: OfferType[];
 }
 
-function MainPage ({offers}: MainPageProps): JSX.Element {
+function MainPage ({offers}: TMainPageProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">

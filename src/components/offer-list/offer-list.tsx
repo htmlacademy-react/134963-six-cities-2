@@ -1,28 +1,32 @@
 import Card from '../card/card';
-import { useCallback } from 'react';
 import { OfferType } from '../../types/offer';
 
-type OfferProps = {
-  offers:OfferType[];
-    onCardHover: (id: string | null) => void;
-  };
+type TOfferProps = {
+  offers: OfferType[];
+  listBlock: string;
+  block: string;
+  onCardHover?: (id: string | null) => void;
+};
 
-function OfferList({offers, onCardHover}: OfferProps): JSX.Element {
-  const handleCardHover = useCallback((id: string | null) => {
-    onCardHover(id);
-  }, [onCardHover]);
+function OfferList({
+  offers,
+  onCardHover,
+  listBlock,
+  block,
+}: TOfferProps): JSX.Element {
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={`${listBlock} places__list}`}>S
       {offers.map((offer) => (
         <Card
           key={offer.id}
           offer={offer}
-          onMouseOver={handleCardHover}
-        />))}
+          onMouseOver={onCardHover}
+          block={block}
+        />
+      ))}
     </div>
   );
 }
 
 export default OfferList;
-
