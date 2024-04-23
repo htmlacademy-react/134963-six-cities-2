@@ -1,15 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import Locations from '../../components/locations/locations';
-import { OfferType } from '../../types/offer';
 import Cities from '../../components/cities/cities';
 
-type TMainPageProps = {
-    // offerCount: number;
-    offers: OfferType[];
-}
 
-function MainPage ({offers}: TMainPageProps): JSX.Element {
+function MainPage (): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
