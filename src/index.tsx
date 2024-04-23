@@ -4,7 +4,7 @@ import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { offers } from './mocks/offers';
 import { reviews } from './mocks/reviews';
-import { store } from './redux';
+import { store } from './redux/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
