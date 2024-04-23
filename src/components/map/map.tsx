@@ -9,7 +9,7 @@ import useMap from '../../hooks/use-map';
 
 type TMapProps = {
   offers: OfferType[];
-  city: City;
+  city: City | null;
   mapClass: string;
   activeOfferId: string | null;
 };

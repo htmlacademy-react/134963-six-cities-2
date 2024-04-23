@@ -22,7 +22,7 @@ function MainPage ({offers}: TMainPageProps): JSX.Element {
           <Locations />
         </div>
         <div className="cities">
-          <Cities offers={offers} />
+          <Cities />
         </div>
       </main>
     </div>

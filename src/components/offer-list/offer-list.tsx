@@ -16,7 +16,7 @@ function OfferList({
 }: TOfferProps): JSX.Element {
 
   return (
-    <div className={`${listBlock} places__list}`}>S
+    <div className={`${listBlock} places__list}`}>
       {offers.map((offer) => (
         <Card
           key={offer.id}
