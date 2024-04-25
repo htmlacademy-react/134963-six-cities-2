@@ -10,7 +10,7 @@ type TCitiesProps = {
   activeCity: string;
 };
 
-function Cities({selectedOffers, activeCity}: TCitiesProps): JSX.Element {
+function Cities({ selectedOffers, activeCity }: TCitiesProps): JSX.Element {
   const dispatch = useAppDispatch();
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
 

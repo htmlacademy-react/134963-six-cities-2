@@ -9,10 +9,9 @@ import { setCity, setOffers } from '../../redux/action/action';
 
 type TMainPageProps = {
   offers: FullOffer[];
-}
+};
 
-
-function MainPage ({offers}: TMainPageProps): JSX.Element {
+function MainPage({ offers }: TMainPageProps): JSX.Element {
   const dispatch = useAppDispatch();
   const activeCity = useAppSelector((state) => state.city);
   const selectedOffers = useAppSelector((state) => state.offers);
@@ -23,7 +22,11 @@ function MainPage ({offers}: TMainPageProps): JSX.Element {
   };
 
   return (
-    <div className={`page__main page__main--index ${selectedOffers.length === 0 ? 'page__main--index-empty' : ''}`}>
+    <div
+      className={`page__main page__main--index ${
+        selectedOffers.length === 0 ? 'page__main--index-empty' : ''
+      }`}
+    >
       <Helmet>{'6 cities - Main'}</Helmet>
       <Header />
 
@@ -33,7 +36,11 @@ function MainPage ({offers}: TMainPageProps): JSX.Element {
           <Locations activeCity={activeCity} onCityClick={handleCityClick} />
         </div>
         <div className="cities">
-          {selectedOffers.length === 0 ? <MainEmpty /> : <Cities selectedOffers={selectedOffers} activeCity={activeCity} />}
+          {selectedOffers.length === 0 ? (
+            <MainEmpty />
+          ) : (
+            <Cities selectedOffers={selectedOffers} activeCity={activeCity} />
+          )}
         </div>
       </main>
     </div>
@@ -41,4 +48,3 @@ function MainPage ({offers}: TMainPageProps): JSX.Element {
 }
 
 export default MainPage;
-
