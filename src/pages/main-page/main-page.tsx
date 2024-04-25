@@ -3,43 +3,42 @@ import Header from '../../components/header/header';
 import Locations from '../../components/locations/locations';
 import Cities from '../../components/cities/cities';
 import MainEmpty from '../../components/main-empty/main-empty';
-import { FullOffer } from '../../types/offer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setCity, setOffers } from '../../redux/action/action';
+import { setCity } from '../../redux/action/action';
+import clsx from 'clsx';
 
-type TMainPageProps = {
-  offers: FullOffer[];
-};
-
-function MainPage({ offers }: TMainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const activeCity = useAppSelector((state) => state.city);
-  const selectedOffers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector((state) => state.offers);
+
+  const filterOffers = offers.filter((offer) => offer.city.name === activeCity);
 
   const handleCityClick = (city: string) => {
     dispatch(setCity(city));
-    dispatch(setOffers(offers));
   };
 
   return (
-    <div
-      className={`page__main page__main--index ${
-        selectedOffers.length === 0 ? 'page__main--index-empty' : ''
-      }`}
-    >
+    <div className="page page--gray page--main">
       <Helmet>{'6 cities - Main'}</Helmet>
       <Header />
 
-      <main className="page__main page__main--index">
+      <main
+        className={clsx(
+          'page__main',
+          'page__main--index',
+          filterOffers.length === 0 && 'page__main--index-empty'
+        )}
+      >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <Locations activeCity={activeCity} onCityClick={handleCityClick} />
         </div>
         <div className="cities">
-          {selectedOffers.length === 0 ? (
+          {filterOffers.length === 0 ? (
             <MainEmpty />
           ) : (
-            <Cities selectedOffers={selectedOffers} activeCity={activeCity} />
+            <Cities selectedOffers={filterOffers} activeCity={activeCity} />
           )}
         </div>
       </main>
