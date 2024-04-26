@@ -1,21 +1,22 @@
-import { useState } from 'react';
+import { LOCATIONS } from '../../const';
 
-function Locations(): JSX.Element {
-  const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
-  const [activeTab , setActiveCity] = useState('');
-
-  const handleCityClick = (city: string) => {
-    setActiveCity(city);
-  };
-
+function Locations({
+  activeCity,
+  onCityClick,
+}: {
+  activeCity: string;
+  onCityClick: (city: string) => void;
+}): JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {cities.map((city) => (
+        {LOCATIONS.map((city) => (
           <li key={city} className="locations__item">
             <a
-              className={`locations__item-link tabs__item ${activeTab === city ? 'tabs__item--active' : ''}`}
-              onClick={() => handleCityClick(city)}
+              className={`locations__item-link tabs__item ${
+                activeCity === city ? 'tabs__item--active' : ''
+              }`}
+              onClick={() => onCityClick(city)}
               href="#"
             >
               <span>{city}</span>

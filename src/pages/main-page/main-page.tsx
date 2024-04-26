@@ -1,28 +1,45 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import Locations from '../../components/locations/locations';
-import { OfferType } from '../../types/offer';
 import Cities from '../../components/cities/cities';
+import MainEmpty from '../../components/main-empty/main-empty';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setCity } from '../../redux/action/action';
+import clsx from 'clsx';
 
-type TMainPageProps = {
-    // offerCount: number;
-    offers: OfferType[];
-}
+function MainPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const activeCity = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
 
-function MainPage ({offers}: TMainPageProps): JSX.Element {
+  const filterOffers = offers.filter((offer) => offer.city.name === activeCity);
+
+  const handleCityClick = (city: string) => {
+    dispatch(setCity(city));
+  };
 
   return (
     <div className="page page--gray page--main">
       <Helmet>{'6 cities - Main'}</Helmet>
       <Header />
 
-      <main className="page__main page__main--index">
+      <main
+        className={clsx(
+          'page__main',
+          'page__main--index',
+          filterOffers.length === 0 && 'page__main--index-empty'
+        )}
+      >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <Locations />
+          <Locations activeCity={activeCity} onCityClick={handleCityClick} />
         </div>
         <div className="cities">
-          <Cities offers={offers} />
+          {filterOffers.length === 0 ? (
+            <MainEmpty />
+          ) : (
+            <Cities selectedOffers={filterOffers} activeCity={activeCity} />
+          )}
         </div>
       </main>
     </div>
@@ -30,4 +47,3 @@ function MainPage ({offers}: TMainPageProps): JSX.Element {
 }
 
 export default MainPage;
-
