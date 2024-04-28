@@ -18,3 +18,10 @@ export const MAX_REVIEW_LENGTH = 300;
 
 export const LOCATIONS = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const SORT_TYPES = [
+  { name: 'Popular' },
+  { name: 'Price: low to high' },
+  { name: 'Price: high to low' },
+  { name: 'Top rated first' },
+];
+
