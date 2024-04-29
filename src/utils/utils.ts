@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { MAX_RATING } from '../const';
+import { FullOffer } from '../types/offer';
 
 export function calculateRatingPercentage(rating: number): number {
   return (rating / MAX_RATING) * 100;
@@ -24,4 +25,23 @@ export function formatDateToISO(dateTime: string): string {
 
   return formattedDate;
 }
+
+export function getSortedOffers(offers: FullOffer[], sortType: string) {
+  const sortedOffers = [...offers];
+
+  switch (sortType) {
+    case 'Price: low to high': {
+      return sortedOffers.sort((a, b) => a.price - b.price);
+    }
+    case 'Price: high to low': {
+      return sortedOffers.sort((a, b) => b.price - a.price);
+    }
+    case 'Top rated first': {
+      return sortedOffers.sort((a, b) => b.rating - a.rating);
+    }
+    case 'Popular':
+    default: return offers;
+  }
+}
+
 

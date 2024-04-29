@@ -2,9 +2,9 @@ import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 import OfferList from '../offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectedSort, setActiveOffer } from '../../redux/action/action';
+import { selectSort, setActiveOffer } from '../../redux/action/action';
 import { FullOffer } from '../../types/offer';
-import { useState } from 'react';
+import { getSortedOffers } from '../../utils/utils';
 
 type TCitiesProps = {
   selectedOffers: FullOffer[];
@@ -16,9 +16,6 @@ function Cities({ selectedOffers, activeCity }: TCitiesProps): JSX.Element {
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const selectedSortType = useAppSelector((state) => state.selectedSort);
 
-  const [isSortOpen, setIsSortOpen] = useState(true);
-
-
   const handleCardHover = (id: string | null) => {
     dispatch(setActiveOffer(id));
   };
@@ -27,34 +24,20 @@ function Cities({ selectedOffers, activeCity }: TCitiesProps): JSX.Element {
   const city = selectedOffers.length > 0 ? selectedOffers[0].city : null;
 
   const handleSortChange = (sort: string) => {
-    dispatch(selectedSort(sort));
+    dispatch(selectSort(sort));
   };
 
-  const handleToggleSort = (isOpened: boolean) => {
-    setIsSortOpen(isOpened);
-  };
-
-  const sortedOffers = [...selectedOffers];
-
-  if (selectedSortType === 'Price: low to high') {
-    sortedOffers.sort((a, b) => a.price - b.price);
-  } else if (selectedSortType === 'Price: high to low') {
-    sortedOffers.sort((a, b) => b.price - a.price);
-  } else if (selectedSortType === 'Top rated first') {
-    sortedOffers.sort((a, b) => b.rating - a.rating);
-  }
+  const sortedOffers = getSortedOffers(selectedOffers, selectedSortType);
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{`places to stay in ${activeCity}`}</b>
+        <b className="places__found">{selectedOffers.length} places to stay in {activeCity}</b>
         {selectedOffers.length > 0 && (
           <Sorting
-            isOpened={isSortOpen}
             selectedSort={selectedSortType}
             onSortChange={handleSortChange}
-            onToggleSort={handleToggleSort}
           />
         )}
         <OfferList

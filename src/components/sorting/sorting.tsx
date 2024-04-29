@@ -1,21 +1,22 @@
+import { useState } from 'react';
 import { SORT_TYPES } from '../../const';
 import clsx from 'clsx';
 
 type TSortingProps = {
-  isOpened: boolean;
   selectedSort: string;
   onSortChange: (sort: string) => void;
-  onToggleSort: (isOpened: boolean) => void;
 };
 
-function Sorting({ isOpened, onToggleSort, onSortChange, selectedSort }: TSortingProps): JSX.Element {
+function Sorting({onSortChange, selectedSort }: TSortingProps): JSX.Element {
+  const [isSortOpen, setIsSortOpen] = useState(false);
+
   const handleSortClick = () => {
-    onToggleSort(!isOpened);
+    setIsSortOpen(!isSortOpen);
   };
 
   const handleOptionClick = (sort: string) => {
     onSortChange(sort);
-    onToggleSort(false);
+    setIsSortOpen(false);
   };
 
   return (
@@ -33,7 +34,7 @@ function Sorting({ isOpened, onToggleSort, onSortChange, selectedSort }: TSortin
       </span>
       <ul
         className={clsx('places__options places__options--custom', {
-          'places__options--opened': isOpened,
+          'places__options--opened': isSortOpen,
         })}
       >
         {SORT_TYPES.map((option) => (
