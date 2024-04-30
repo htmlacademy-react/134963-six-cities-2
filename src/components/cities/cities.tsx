@@ -2,8 +2,9 @@ import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 import OfferList from '../offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setActiveOffer } from '../../redux/action/action';
+import { selectSort, setActiveOffer } from '../../redux/action/action';
 import { FullOffer } from '../../types/offer';
+import { getSortedOffers } from '../../utils/utils';
 
 type TCitiesProps = {
   selectedOffers: FullOffer[];
@@ -13,6 +14,7 @@ type TCitiesProps = {
 function Cities({ selectedOffers, activeCity }: TCitiesProps): JSX.Element {
   const dispatch = useAppDispatch();
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
+  const selectedSortType = useAppSelector((state) => state.selectedSort);
 
   const handleCardHover = (id: string | null) => {
     dispatch(setActiveOffer(id));
@@ -21,14 +23,25 @@ function Cities({ selectedOffers, activeCity }: TCitiesProps): JSX.Element {
   const mapOffers = selectedOffers.length > 0 ? selectedOffers : [];
   const city = selectedOffers.length > 0 ? selectedOffers[0].city : null;
 
+  const handleSortChange = (sort: string) => {
+    dispatch(selectSort(sort));
+  };
+
+  const sortedOffers = getSortedOffers(selectedOffers, selectedSortType);
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{`places to stay in ${activeCity}`}</b>
-        <Sorting />
+        <b className="places__found">{selectedOffers.length} places to stay in {activeCity}</b>
+        {selectedOffers.length > 0 && (
+          <Sorting
+            selectedSort={selectedSortType}
+            onSortChange={handleSortChange}
+          />
+        )}
         <OfferList
-          offers={selectedOffers}
+          offers={sortedOffers}
           listBlock="cities__places-list"
           block="cities"
           onCardHover={handleCardHover}
