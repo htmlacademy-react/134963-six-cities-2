@@ -1,9 +1,9 @@
 export enum AppRoute {
-    Login = '/login',
-    Favorites = '/favorites',
-    Main = '/',
-    Offer = '/offer/:id'
-  }
+  Login = '/login',
+  Favorites = '/favorites',
+  Main = '/',
+  Offer = '/offer/:id'
+}
 
 export enum ApiRoute {
   Offers = '/offers',
@@ -11,10 +11,10 @@ export enum ApiRoute {
 
 
 export enum AuthorizationStatus {
-    Auth = 'AUTH',
-    NoAuth = 'NO_AUTH',
-    Unknown = 'UNKNOWN',
-  }
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
 
 export const MAX_RATING = 5;
 

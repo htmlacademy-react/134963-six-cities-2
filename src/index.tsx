@@ -16,12 +16,7 @@ const root = ReactDOM.createRoot(
 const AppWrapper = () => {
   const offers = useAppSelector((state) => state.offers);
 
-  return (
-    <App
-      offers={offers}
-      reviews={reviews}
-    />
-  );
+  return <App offers={offers} reviews={reviews} />;
 };
 
 root.render(
