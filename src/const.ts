@@ -18,6 +18,9 @@ export const MAX_REVIEW_LENGTH = 300;
 
 export const LOCATIONS = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const BACKEND_URL = 'https://13.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;
+
 export const SORT_TYPES = [
   { name: 'Popular' },
   { name: 'Price: low to high' },
