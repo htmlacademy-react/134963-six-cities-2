@@ -5,6 +5,11 @@ export enum AppRoute {
     Offer = '/offer/:id'
   }
 
+export enum ApiRoute {
+  Offers = '/offers',
+}
+
+
 export enum AuthorizationStatus {
     Auth = 'AUTH',
     NoAuth = 'NO_AUTH',

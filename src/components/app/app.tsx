@@ -16,12 +16,13 @@ type TAppProps = {
 }
 
 function App({offers, reviews}: TAppProps): JSX.Element {
+
   return (
     <HelmetProvider>
       <RouterProvider router={createBrowserRouter([
         {
           path: AppRoute.Main,
-          element: <MainPage offers = {offers}/>
+          element: <MainPage />
         },
         {
           path: AppRoute.Favorites,
