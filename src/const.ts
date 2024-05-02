@@ -7,8 +7,9 @@ export enum AppRoute {
 
 export enum ApiRoute {
   Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
 }
-
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -25,6 +26,7 @@ export const LOCATIONS = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg'
 
 export const BACKEND_URL = 'https://13.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
+export const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 export const SORT_TYPES = [
   { name: 'Popular' },
