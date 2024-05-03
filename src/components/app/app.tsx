@@ -9,6 +9,10 @@ import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { FullOffer } from '../../types/offer';
 import { Review } from '../../types/reviews';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchOffers } from '../../redux/api-actions/api-actions';
+import Spinner from '../spinner/spinner';
 
 type TAppProps = {
   offers: FullOffer[];
@@ -16,12 +20,26 @@ type TAppProps = {
 }
 
 function App({offers, reviews}: TAppProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { isLoading, error } = useAppSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(fetchOffers());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <HelmetProvider>
       <RouterProvider router={createBrowserRouter([
         {
           path: AppRoute.Main,
-          element: <MainPage offers = {offers}/>
+          element: <MainPage />
         },
         {
           path: AppRoute.Favorites,

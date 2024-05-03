@@ -14,7 +14,6 @@ function OfferList({
   listBlock,
   block,
 }: TOfferProps): JSX.Element {
-
   return (
     <div className={`${listBlock} places__list}`}>
       {offers.map((offer) => (
