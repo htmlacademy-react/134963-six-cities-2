@@ -21,7 +21,7 @@ function MainPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>{'6 cities - Main'}</Helmet>
-      <Header />
+      <Header showNavigation />
 
       <main
         className={clsx(
