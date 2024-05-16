@@ -1,5 +1,6 @@
 import { AppRoute, AuthorizationStatus } from '../../const';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 import MainPage from '../../pages/main-page/main-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -11,6 +12,8 @@ import { FullOffer } from '../../types/offer';
 import { Review } from '../../types/reviews';
 import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
+import { Routes, Route } from 'react-router-dom';
+
 
 type TAppProps = {
   offers: FullOffer[];
@@ -30,30 +33,34 @@ function App({offers, reviews}: TAppProps): JSX.Element {
 
   return (
     <HelmetProvider>
-      <RouterProvider router={createBrowserRouter([
-        {
-          path: AppRoute.Main,
-          element: <MainPage />
-        },
-        {
-          path: AppRoute.Favorites,
-          element: <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} ><FavoritesPage offers = {offers}/></PrivateRoute>,
-        },
-        {
-          path: AppRoute.Login,
-          element: <LoginPage />,
-        },
-        {
-          path: `${AppRoute.Offer}/:id`,
-          element: <OfferPage offers = {offers} reviews={reviews} />,
-        },
-        {
-          path: '*',
-          element: <NotFoundPage />,
-        }
-      ])}
-      >
-      </RouterProvider>
+      <HistoryRouter history={browserHistory}>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<MainPage />}
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <FavoritesPage offers={offers} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<LoginPage />}
+          />
+          <Route
+            path={`${AppRoute.Offer}/:id`}
+            element={<OfferPage offers={offers} reviews={reviews} />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
+        </Routes>
+      </HistoryRouter>
     </HelmetProvider>);
 }
 

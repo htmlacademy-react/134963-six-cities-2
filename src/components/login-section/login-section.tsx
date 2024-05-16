@@ -1,7 +1,6 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, emailRegex, passwordRegex } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { FormEvent, useRef, useState } from 'react';
+import { emailRegex, passwordRegex } from '../../const';
+import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../redux/api-actions/api-actions';
 
 function LoginSection() {
@@ -10,10 +9,6 @@ function LoginSection() {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const userData = useAppSelector((state) => state.userData);
 
   const handleInputChange = () => {
     if (loginRef.current && passwordRef.current) {
@@ -42,13 +37,6 @@ function LoginSection() {
       );
     }
   };
-
-  useEffect(() => {
-    if (authorizationStatus === AuthorizationStatus.Auth && userData !== null) {
-      navigate(AppRoute.Main);
-    }
-  }, [authorizationStatus, userData, navigate]);
-
 
   return (
     <section className="login">

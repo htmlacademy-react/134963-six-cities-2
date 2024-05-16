@@ -10,6 +10,8 @@ const AUTH_ACTION = 'AUTH_ACTION';
 const SET_OFFERS = 'SET_OFFERS';
 const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
 const SET_USER_DATA = 'SET_USER_DATA';
+export const REDIRECT_TO_ROUTE = 'REDIRECT_TO_ROUTE';
+
 
 export const setCity = createAction<string>(SET_CITY);
 export const setOffers = createAction<FullOffer[]>(SET_OFFERS);
@@ -18,3 +20,4 @@ export const selectSort = createAction<string>(SELECT_SORT);
 export const authenticateUser = createAction<AuthorizationStatus>(AUTH_ACTION);
 export const setLoadingStatus = createAction<boolean>(SET_LOADING_STATUS);
 export const setUserData = createAction<UserData | null>(SET_USER_DATA);
+export const redirectToRoute = createAction<string>(REDIRECT_TO_ROUTE);
