@@ -2,7 +2,7 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Main = '/',
-  Offer = '/offer/:id'
+  Offer = '/offer/:id',
 }
 
 export enum ApiRoute {
@@ -26,7 +26,10 @@ export const LOCATIONS = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg'
 
 export const BACKEND_URL = 'https://13.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
-export const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
+export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
+
+export const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+export const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/;
 
 export const SORT_TYPES = [
   { name: 'Popular' },
