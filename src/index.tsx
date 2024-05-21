@@ -7,6 +7,7 @@ import { checkAuth, fetchOffers } from './redux/api-actions/api-actions';
 import { useAppSelector } from './hooks';
 import { reviews } from './mock/reviews';
 import { Toaster } from 'react-hot-toast';
+import { selectOffers } from './redux/slices/offers';
 
 store.dispatch(checkAuth());
 store.dispatch(fetchOffers());
@@ -16,7 +17,7 @@ const root = ReactDOM.createRoot(
 );
 
 const AppWrapper = () => {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(selectOffers);
 
   return (
     <Fragment>
