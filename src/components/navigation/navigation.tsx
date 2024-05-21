@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { logoutAction } from '../../redux/api-actions/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { selectUserData } from '../../redux/slices/user';
+import { selectAuthorizationStatus } from '../../redux/slices/user';
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
-  const userData = useAppSelector((state) => state.userData);
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
+  const userData = useAppSelector(selectUserData);
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
 
   const handleLogout = () => {
     dispatch(logoutAction());
