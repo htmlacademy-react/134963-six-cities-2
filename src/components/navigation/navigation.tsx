@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { logoutAction } from '../../redux/slices/user/userActions';
+import { logoutAction } from '../../redux/slices/user/userThunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUserData } from '../../redux/slices/user/userSlice';
 import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
