@@ -2,9 +2,10 @@ import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 import OfferList from '../offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectSort, setActiveOffer } from '../../redux/action/action';
 import { FullOffer } from '../../types/offer';
 import { getSortedOffers } from '../../utils/utils';
+import { selectActiveOfferId, setActiveOffer } from '../../redux/slices/offers';
+import { selectSelectedSort, selectSort } from '../../redux/slices/ui';
 
 type TCitiesProps = {
   selectedOffers: FullOffer[];
@@ -13,8 +14,8 @@ type TCitiesProps = {
 
 function Cities({ selectedOffers, activeCity }: TCitiesProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const activeOfferId = useAppSelector((state) => state.activeOfferId);
-  const selectedSortType = useAppSelector((state) => state.selectedSort);
+  const activeOfferId = useAppSelector(selectActiveOfferId);
+  const selectedSortType = useAppSelector(selectSelectedSort);
 
   const handleCardHover = (id: string | null) => {
     dispatch(setActiveOffer(id));
