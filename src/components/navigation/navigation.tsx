@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { logoutAction } from '../../redux/api-actions/api-actions';
+import { logoutAction } from '../../redux/slices/user/userActions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectUserData } from '../../redux/slices/user';
-import { selectAuthorizationStatus } from '../../redux/slices/user';
+import { selectUserData } from '../../redux/slices/user/userSlice';
+import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();

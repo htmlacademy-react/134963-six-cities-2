@@ -1,7 +1,7 @@
 import {combineReducers} from '@reduxjs/toolkit';
-import { userSlice } from '../slices/user';
-import { offerSlice } from '../slices/offers';
-import { uiSlice } from '../slices/ui';
+import { userSlice } from '../slices/user/userSlice';
+import { offerSlice } from '../slices/offers/offersSlice';
+import { uiSlice } from '../slices/ui/ui';
 
 
 export const rootReducer = combineReducers({

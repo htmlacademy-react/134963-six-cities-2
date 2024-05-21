@@ -4,8 +4,8 @@ import OfferList from '../offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FullOffer } from '../../types/offer';
 import { getSortedOffers } from '../../utils/utils';
-import { selectActiveOfferId, setActiveOffer } from '../../redux/slices/offers';
-import { selectSelectedSort, selectSort } from '../../redux/slices/ui';
+import { selectActiveOfferId, setActiveOffer } from '../../redux/slices/offers/offersSlice';
+import { selectSelectedSort, selectSort } from '../../redux/slices/ui/ui';
 
 type TCitiesProps = {
   selectedOffers: FullOffer[];

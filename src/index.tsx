@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { checkAuth, fetchOffers } from './redux/api-actions/api-actions';
+import { fetchOffers } from './redux/slices/offers/offersActions';
 import { useAppSelector } from './hooks';
 import { reviews } from './mock/reviews';
 import { Toaster } from 'react-hot-toast';
-import { selectOffers } from './redux/slices/offers';
+import { selectOffers } from './redux/slices/offers/offersSlice';
+import { checkAuth } from './redux/slices/user/userActions';
 
 store.dispatch(checkAuth());
 store.dispatch(fetchOffers());

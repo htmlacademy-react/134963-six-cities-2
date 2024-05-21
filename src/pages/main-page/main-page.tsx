@@ -4,9 +4,9 @@ import Locations from '../../components/locations/locations';
 import Cities from '../../components/cities/cities';
 import MainEmpty from '../../components/main-empty/main-empty';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setCity } from '../../redux/slices/ui';
-import { selectOffers } from '../../redux/slices/offers';
-import { selectCity } from '../../redux/slices/ui';
+import { setCity } from '../../redux/slices/ui/ui';
+import { selectOffers } from '../../redux/slices/offers/offersSlice';
+import { selectCity } from '../../redux/slices/ui/ui';
 import clsx from 'clsx';
 
 function MainPage(): JSX.Element {

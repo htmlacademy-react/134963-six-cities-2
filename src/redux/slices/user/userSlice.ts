@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, RequestStatus } from '../../const';
-import { UserData } from '../../types/auth';
-import { checkAuth, loginAction, logoutAction } from '../api-actions/api-actions';
+import { AuthorizationStatus, RequestStatus } from '../../../const';
+import { UserData } from '../../../types/auth';
+import { checkAuth, loginAction, logoutAction } from '../user/userActions';
 export interface UserState {
   authorizationStatus: AuthorizationStatus;
   userData: UserData | null;

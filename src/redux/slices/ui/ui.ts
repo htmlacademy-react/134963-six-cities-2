@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOCATIONS, SORT_TYPES } from '../../const';
+import { LOCATIONS, SORT_TYPES } from '../../../const';
 
 export interface UiState {
   city: string;

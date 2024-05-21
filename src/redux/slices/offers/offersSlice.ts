@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FullOffer } from '../../types/offer';
-import { fetchOffers } from '../api-actions/api-actions';
+import { FullOffer } from '../../../types/offer';
+import { fetchOffers } from '../offers/offersActions';
 
 export interface OfferState {
   offers: FullOffer[];

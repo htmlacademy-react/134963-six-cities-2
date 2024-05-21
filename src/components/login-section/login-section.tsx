@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useState } from 'react';
 import { emailRegex, passwordRegex } from '../../const';
 import { useAppDispatch } from '../../hooks';
-import { loginAction } from '../../redux/api-actions/api-actions';
+import { loginAction } from '../../redux/slices/user/userActions';
 
 function LoginSection() {
   const [isFormValid, setIsFormValid] = useState(false);
