@@ -17,6 +17,8 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export const enum RequestStatus { Idle, Loading, Success, Failed }
+
 export const MAX_RATING = 5;
 
 export const MIN_REVIEW_LENGTH = 50;
