@@ -25,7 +25,7 @@ function OfferPage({ offers, reviews }: TOfferPageProp): JSX.Element {
   return (
     <div className="page">
       <Helmet>{'6 cities - Offer'}</Helmet>
-      <Header />
+      <Header showNavigation={false} />
 
       <main className="page__main page__main--offer">
         <section className="offer">
