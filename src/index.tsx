@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store } from './redux';
 import { fetchOffers } from './redux/slices/offers/offersThunks';
 import { useAppSelector } from './hooks';
 import { reviews } from './mock/reviews';
