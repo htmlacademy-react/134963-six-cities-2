@@ -28,6 +28,5 @@ export const selectCity = (state: { ui: UiState }) => state.ui.city;
 export const selectSelectedSort = (state: { ui: UiState }) => state.ui.selectedSort;
 
 export const { setCity, selectSort } = uiSlice.actions;
-export default uiSlice.reducer;
 
 export {uiSlice};
