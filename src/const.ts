@@ -9,6 +9,14 @@ export enum ApiRoute {
   Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments'
+}
+
+export enum NameSpace {
+  UserInterface = 'UI',
+  Offers = 'OFFERS',
+  User = 'USER',
+  Comments = 'COMMENTS',
 }
 
 export enum AuthorizationStatus {

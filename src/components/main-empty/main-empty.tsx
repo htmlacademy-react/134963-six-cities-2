@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 
-type RootState = {
+type CityState = {
     city: string;
 }
 
 function MainEmpty(): JSX.Element {
-  const currentCity = useSelector((state: RootState)=> state.city);
+  const currentCity = useSelector((state: CityState)=> state.city);
 
   return (
     <div className="cities__places-container cities__places-container--empty container">

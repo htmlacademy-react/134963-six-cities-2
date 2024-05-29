@@ -1,4 +1,4 @@
-import { Review } from '../../types/reviews';
+import { Review } from '../../types/comments';
 import ReviewItem from '../reviews-item/reviews-item';
 
 type TListReviews = {

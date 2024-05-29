@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RequestStatus } from '../../../const';
 import { FullOffer } from '../../../types/offer';
-import { Reviews } from '../../../types/reviews';
+import { Comment } from '../../../types/comments';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from './offerThunks';
 
 export interface OfferState {
   nearByOffers: FullOffer[];
   offer: FullOffer | null;
-  comments: Reviews;
+  comments: Comment[];
   status: RequestStatus;
 }
 
@@ -21,13 +21,8 @@ const initialState: OfferState = {
 const offerSlice = createSlice({
   name: 'offer',
   initialState,
-  reducers: {
-    clear(state) {
-      state.offer = null;
-      state.nearByOffers = [];
-    },
-  },
-  extraReducers: (builder) =>
+  reducers: {},
+  extraReducers: (builder) => {
     builder
       .addCase(fetchOfferByIdAction.fulfilled, (state, action) => {
         state.offer = action.payload;
@@ -41,10 +36,13 @@ const offerSlice = createSlice({
       })
       .addCase(fetchNearByOffersAction.fulfilled, (state, action) => {
         state.nearByOffers = action.payload;
-      }),
+      });
+  },
 });
 
-export const { clear } = offerSlice.actions;
+export const selectOffer = (state: { offer: OfferState }): FullOffer | null => state.offer.offer;
+export const selectNearByOffers = (state: { offer: OfferState }): FullOffer[] => state.offer.nearByOffers;
+export const selectComments = (state: { offer: OfferState }): Comment[] => state.offer.comments;
+export const selectOfferStatus = (state: { offer: OfferState }): RequestStatus => state.offer.status;
 export default offerSlice.reducer;
-
-
+export {offerSlice};

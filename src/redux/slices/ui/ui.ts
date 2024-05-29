@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOCATIONS, SORT_TYPES } from '../../../const';
+import { LOCATIONS, NameSpace, SORT_TYPES } from '../../../const';
 
 export interface UiState {
   city: string;
@@ -12,7 +12,7 @@ const initialState: UiState = {
 };
 
 const uiSlice = createSlice({
-  name: 'ui',
+  name: NameSpace.UserInterface,
   initialState,
   reducers: {
     setCity: (state, action: PayloadAction<string>) => {
@@ -24,9 +24,9 @@ const uiSlice = createSlice({
   }
 });
 
-export const selectCity = (state: { ui: UiState }) => state.ui.city;
-export const selectSelectedSort = (state: { ui: UiState }) => state.ui.selectedSort;
+export const selectCity = (state: { [NameSpace.UserInterface]: UiState }): string => state[NameSpace.UserInterface].city;
+export const selectSelectedSort = (state: { [NameSpace.UserInterface]: UiState }): string => state[NameSpace.UserInterface].selectedSort;
 
 export const { setCity, selectSort } = uiSlice.actions;
-
+export default uiSlice.reducer;
 export {uiSlice};

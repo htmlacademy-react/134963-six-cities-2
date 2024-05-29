@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { FullOffer } from '../../../types/offer';
 import { ApiRoute } from '../../../const';
-import { AppDispatch, State } from '../../../types/state';
+import { State } from '../../../types/state';
 
 
-export const fetchOfferByIdAction = createAsyncThunk<FullOffer, string, { dispatch: AppDispatch; state: State; extra: AxiosInstance }>(
+export const fetchOfferByIdAction = createAsyncThunk<FullOffer, string, { state: State; extra: AxiosInstance }>(
   'data/fetchOfferById',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<FullOffer>(`${ApiRoute.Offers}/${offerId}`);
@@ -13,7 +13,7 @@ export const fetchOfferByIdAction = createAsyncThunk<FullOffer, string, { dispat
   }
 );
 
-export const fetchNearByOffersAction = createAsyncThunk<FullOffer[], string, { dispatch: AppDispatch; state: State; extra: AxiosInstance }>(
+export const fetchNearByOffersAction = createAsyncThunk<FullOffer[], string, { state: State; extra: AxiosInstance }>(
   'data/fetchNearByOffers',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<FullOffer[]>(`${ApiRoute.Offers}/${offerId}/nearby`);

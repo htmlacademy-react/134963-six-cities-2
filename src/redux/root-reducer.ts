@@ -2,10 +2,14 @@ import {combineReducers} from '@reduxjs/toolkit';
 import { userSlice } from './slices/user/userSlice';
 import { offersSlice } from './slices/offers/offersSlice';
 import { uiSlice } from './slices/ui/ui';
-
+import { NameSpace } from '../const';
+import { commentReducer } from './slices/comments/commentSlice';
+import { offerSlice } from './slices/offer/offerSlice';
 
 export const rootReducer = combineReducers({
-  [userSlice.name]: userSlice.reducer,
-  [offersSlice.name]: offersSlice.reducer,
-  [uiSlice.name]: uiSlice.reducer,
+  [NameSpace.User]: userSlice.reducer,
+  [offerSlice.name]: offerSlice.reducer,
+  [NameSpace.Offers]: offersSlice.reducer,
+  [NameSpace.UserInterface]: uiSlice.reducer,
+  [NameSpace.Comments]: commentReducer,
 });

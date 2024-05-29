@@ -1,7 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { FullOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
-import { Review } from '../../types/reviews';
 import {
   calculateRatingPercentage,
   capitalizeFirstLetter,
@@ -11,16 +9,25 @@ import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { selectOffer, selectNearByOffers, selectComments } from '../../redux/slices/offer/offerSlice';
+import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
 
-type TOfferPageProp = {
-  offers: FullOffer[];
-  reviews: Review[];
-};
 
-function OfferPage({ offers, reviews }: TOfferPageProp): JSX.Element {
-  const { id } = useParams();
-  const offerInfo = offers.find((offer) => offer.id === id);
-  const nearestOffers = offers.slice(0, 3);
+function OfferPage(): JSX.Element {
+  const { offerId } = useParams<{ offerId: string }>();
+  const dispatch = useAppDispatch();
+  const offerInfo = useAppSelector(selectOffer);
+  const nearestOffers = useAppSelector(selectNearByOffers);
+  const reviews = useAppSelector(selectComments);
+
+  useEffect(() => {
+    if (offerId) {
+      dispatch(fetchOfferByIdAction(offerId));
+      dispatch(fetchNearByOffersAction(offerId));
+    }
+  }, [dispatch, offerId]);
 
   return (
     <div className="page">

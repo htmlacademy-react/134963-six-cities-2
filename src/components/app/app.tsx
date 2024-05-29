@@ -9,14 +9,14 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { FullOffer } from '../../types/offer';
-import { Review } from '../../types/reviews';
+import { Comment } from '../../types/comments';
 import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
 import { Routes, Route } from 'react-router-dom';
 
 type TAppProps = {
   offers: FullOffer[];
-  reviews: Review[];
+  reviews: Comment[];
 };
 
 function App({ offers, reviews }: TAppProps): JSX.Element {

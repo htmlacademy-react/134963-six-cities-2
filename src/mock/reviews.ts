@@ -1,6 +1,6 @@
-import { Reviews } from '../types/reviews';
+import { Comments } from '../types/comments';
 
-export const reviews : Reviews = [
+export const reviews : Comments = [
   {
     'id': 'b67dafd5-b953-4a30-8c8d-bd083cd7t62a',
     'date': '1997-07-08T14:14:56.569Z',
