@@ -3,7 +3,7 @@ import { userSlice } from './slices/user/userSlice';
 import { offersSlice } from './slices/offers/offersSlice';
 import { uiSlice } from './slices/ui/ui';
 import { NameSpace } from '../const';
-import { commentReducer } from './slices/comments/commentSlice';
+import { commentSlice } from './slices/comments/commentSlice';
 import { offerSlice } from './slices/offer/offerSlice';
 
 export const rootReducer = combineReducers({
@@ -11,5 +11,5 @@ export const rootReducer = combineReducers({
   [offerSlice.name]: offerSlice.reducer,
   [NameSpace.Offers]: offersSlice.reducer,
   [NameSpace.UserInterface]: uiSlice.reducer,
-  [NameSpace.Comments]: commentReducer,
+  [NameSpace.Comments]: commentSlice.reducer,
 });

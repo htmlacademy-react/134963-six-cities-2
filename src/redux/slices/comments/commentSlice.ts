@@ -42,4 +42,4 @@ const commentSlice = createSlice({
   reducers: {},
 });
 
-export const { reducer: commentReducer } = commentSlice;
+export { commentSlice };
