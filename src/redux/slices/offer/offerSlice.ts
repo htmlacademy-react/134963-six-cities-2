@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { NameSpace, RequestStatus } from '../../../const';
 import { FullOffer } from '../../../types/offer';
 import { Comment } from '../../../types/comments';
@@ -50,4 +50,15 @@ export const selectOffer = (state: State) => state[NameSpace.Offer].offer;
 export const selectNearByOffers = (state: State)=> state[NameSpace.Offer].nearByOffers;
 export const selectComments = (state: State) => state[NameSpace.Offer].comments;
 export const selectOfferStatus = (state: State) => state[NameSpace.Offer].status;
+
+export const selectRequestStatus = createSelector(
+  [selectOfferStatus],
+  (status) => ({
+    isLoading: status === RequestStatus.Loading,
+    isSuccess: status === RequestStatus.Success,
+    isError: status === RequestStatus.Failed,
+    isIdle: status === RequestStatus.Idle,
+  })
+);
+
 export {offerSlice};
