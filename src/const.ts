@@ -2,7 +2,7 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Main = '/',
-  Offer = '/offer/:id',
+  Offer = '/offer',
 }
 
 export enum ApiRoute {
@@ -17,6 +17,7 @@ export enum NameSpace {
   Offers = 'OFFERS',
   User = 'USER',
   Comments = 'COMMENTS',
+  Offer = 'OFFER'
 }
 
 export enum AuthorizationStatus {

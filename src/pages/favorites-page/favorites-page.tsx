@@ -19,7 +19,7 @@ function FavoritesPage({ offers }: TFavoritesPageProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>{'6 cities - Favorites'}</Helmet>
-      <Header />
+      <Header showNavigation={false} />
       {hasFavorites ? (
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">

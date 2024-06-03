@@ -8,7 +8,7 @@ import { offerSlice } from './slices/offer/offerSlice';
 
 export const rootReducer = combineReducers({
   [NameSpace.User]: userSlice.reducer,
-  [offerSlice.name]: offerSlice.reducer,
+  [NameSpace.Offer]: offerSlice.reducer,
   [NameSpace.Offers]: offersSlice.reducer,
   [NameSpace.UserInterface]: uiSlice.reducer,
   [NameSpace.Comments]: commentSlice.reducer,

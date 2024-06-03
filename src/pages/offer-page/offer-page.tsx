@@ -11,13 +11,16 @@ import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { selectOffer, selectNearByOffers, selectComments } from '../../redux/slices/offer/offerSlice';
+import { selectOffer, selectNearByOffers, selectComments, selectOfferStatus } from '../../redux/slices/offer/offerSlice';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
+import { RequestStatus } from '../../const';
+import Spinner from '../../components/spinner/spinner';
 
 
 function OfferPage(): JSX.Element {
   const { offerId } = useParams<{ offerId: string }>();
   const dispatch = useAppDispatch();
+  const status = useAppSelector(selectOfferStatus);
   const offerInfo = useAppSelector(selectOffer);
   const nearestOffers = useAppSelector(selectNearByOffers);
   const reviews = useAppSelector(selectComments);
@@ -27,7 +30,11 @@ function OfferPage(): JSX.Element {
       dispatch(fetchOfferByIdAction(offerId));
       dispatch(fetchNearByOffersAction(offerId));
     }
-  }, [dispatch, offerId]);
+  }, [dispatch, fetchOfferByIdAction, fetchNearByOffersAction, offerId]);
+
+  if (status === RequestStatus.Idle || status === RequestStatus.Loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="page">

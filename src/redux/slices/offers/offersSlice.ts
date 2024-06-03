@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FullOffer } from '../../../types/offer';
 import { fetchOffers } from './offersThunks';
 import { NameSpace } from '../../../const';
+import { State } from '../../../types/state';
 
 export interface OffersState {
   offers: FullOffer[];
@@ -41,11 +42,10 @@ const offersSlice = createSlice({
       });
   }
 });
-
-export const selectOffers = (state: { [NameSpace.Offers]: OffersState }): FullOffer[] => state[NameSpace.Offers].offers;
-export const selectActiveOfferId = (state: { [NameSpace.Offers]: OffersState }): string | null => state[NameSpace.Offers].activeOfferId;
-export const selectIsLoading = (state: { [NameSpace.Offers]: OffersState }): boolean => state[NameSpace.Offers].isLoading;
-export const selectError = (state: { [NameSpace.Offers]: OffersState }): string | null => state[NameSpace.Offers].error;
+export const selectOffers = (state: State) => state[NameSpace.Offers].offers;
+export const selectActiveOfferId = (state: State) => state[NameSpace.Offers].activeOfferId;
+export const selectIsLoading = (state: State) => state[NameSpace.Offers].isLoading;
+export const selectError = (state: State) => state[NameSpace.Offers].error;
 
 export const {setActiveOffer} = offersSlice.actions;
 export default offersSlice.reducer;

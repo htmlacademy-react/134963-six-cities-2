@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RequestStatus } from '../../../const';
+import { NameSpace, RequestStatus } from '../../../const';
 import { FullOffer } from '../../../types/offer';
 import { Comment } from '../../../types/comments';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from './offerThunks';
+import { State } from '../../../types/state';
 
 export interface OfferState {
   nearByOffers: FullOffer[];
@@ -19,9 +20,14 @@ const initialState: OfferState = {
 };
 
 const offerSlice = createSlice({
-  name: 'offer',
+  name: NameSpace.Offer,
   initialState,
-  reducers: {},
+  reducers: {
+    clear(state) {
+      state.offer = null;
+      state.nearByOffers = [];
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOfferByIdAction.fulfilled, (state, action) => {
@@ -40,9 +46,8 @@ const offerSlice = createSlice({
   },
 });
 
-export const selectOffer = (state: { offer: OfferState }): FullOffer | null => state.offer.offer;
-export const selectNearByOffers = (state: { offer: OfferState }): FullOffer[] => state.offer.nearByOffers;
-export const selectComments = (state: { offer: OfferState }): Comment[] => state.offer.comments;
-export const selectOfferStatus = (state: { offer: OfferState }): RequestStatus => state.offer.status;
-export default offerSlice.reducer;
+export const selectOffer = (state: State) => state[NameSpace.Offer].offer;
+export const selectNearByOffers = (state: State)=> state[NameSpace.Offer].nearByOffers;
+export const selectComments = (state: State) => state[NameSpace.Offer].comments;
+export const selectOfferStatus = (state: State) => state[NameSpace.Offer].status;
 export {offerSlice};
