@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { addCommentAction, fetchCommentsAction } from './commentThunks';
 import { NameSpace, RequestStatus } from '../../../const';
 import { Comment } from '../../../types/comments';
@@ -44,5 +44,17 @@ const commentSlice = createSlice({
 });
 
 export const selectComments = (state: State) => state[NameSpace.Comments].comments;
+export const selectCommentStatus = (state: State) => state[NameSpace.Comments].status;
+
+
+export const selectCommentsStatus = createSelector(
+  [selectCommentStatus],
+  (status) => ({
+    isLoading: status === RequestStatus.Loading,
+    isSuccess: status === RequestStatus.Success,
+    isError: status === RequestStatus.Failed,
+    isIdle: status === RequestStatus.Idle,
+  })
+);
 
 export { commentSlice };
