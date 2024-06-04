@@ -42,6 +42,9 @@ export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
 export const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 export const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/;
 
+export const NEAR_OFFERS_COUNT = 3;
+export const COMMENTS_COUNT = 10;
+
 export const SORT_TYPES = [
   { name: 'Popular' },
   { name: 'Price: low to high' },

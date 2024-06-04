@@ -11,9 +11,13 @@ import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { selectOffer, selectNearByOffers, selectComments, selectRequestStatus } from '../../redux/slices/offer/offerSlice';
+import { selectOffer, selectNearByOffers, selectRequestStatus } from '../../redux/slices/offer/offerSlice';
+import { selectComments } from '../../redux/slices/comments/commentSlice';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
 import Spinner from '../../components/spinner/spinner';
+import NotFoundPage from '../not-found-page/not-found-page';
+import { COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
+import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
 
 
 function OfferPage(): JSX.Element {
@@ -22,12 +26,13 @@ function OfferPage(): JSX.Element {
   const status = useAppSelector(selectRequestStatus);
   const offerInfo = useAppSelector(selectOffer);
   const nearestOffers = useAppSelector(selectNearByOffers);
-  const reviews = useAppSelector(selectComments);
+  const comments = useAppSelector(selectComments);
 
   useEffect(() => {
     if (offerId) {
       dispatch(fetchOfferByIdAction(offerId));
       dispatch(fetchNearByOffersAction(offerId));
+      dispatch(fetchCommentsAction(offerId));
     }
   }, [dispatch, fetchOfferByIdAction, fetchNearByOffersAction, offerId]);
 
@@ -35,6 +40,12 @@ function OfferPage(): JSX.Element {
     return <Spinner />;
   }
 
+  if (status.isError) {
+    return <NotFoundPage />;
+  }
+
+  const threeNearOffers = nearestOffers.slice(0, NEAR_OFFERS_COUNT);
+  const tenComments = comments.slice(0, COMMENTS_COUNT);
 
   return (
     <div className="page">
@@ -148,17 +159,17 @@ function OfferPage(): JSX.Element {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
                   Reviews &middot;{' '}
-                  <span className="reviews__amount">{reviews.length}</span>
+                  <span className="reviews__amount">{comments.length}</span>
                 </h2>
-                <ListReviews reviews={reviews} />
+                <ListReviews reviews={tenComments} />
                 <OfferCommentForm />
               </section>
             </div>
           </div>
           <Map
-            offers={nearestOffers}
+            offers={threeNearOffers}
             mapClass="offer__map"
-            city={nearestOffers[0].city}
+            city={threeNearOffers[0].city}
             activeOfferId={null}
           />
         </section>
@@ -168,7 +179,7 @@ function OfferPage(): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <OfferList
-              offers={nearestOffers}
+              offers={threeNearOffers}
               listBlock="near-places__list"
               block="near-places"
             />

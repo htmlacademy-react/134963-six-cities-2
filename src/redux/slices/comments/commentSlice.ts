@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { addCommentAction, fetchCommentsAction } from './commentThunks';
 import { NameSpace, RequestStatus } from '../../../const';
 import { Comment } from '../../../types/comments';
+import { State } from '../../../types/state';
 
 export interface CommentState {
     comments: Comment[];
@@ -41,5 +42,7 @@ const commentSlice = createSlice({
       });
   }
 });
+
+export const selectComments = (state: State) => state[NameSpace.Comments].comments;
 
 export { commentSlice };
