@@ -1,31 +1,11 @@
 import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
-import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const';
+import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH, ratingOptions } from '../../const';
 import { addCommentAction } from '../../redux/slices/comments/commentThunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectCommentsStatus } from '../../redux/slices/comments/commentSlice';
 import Spinner from '../spinner/spinner';
+import { TFormData, TOfferFromProps } from '../../types/offer-comment-form';
 
-type TOfferFromProps = {
-  offerId: string;
-};
-
-type TFormData = {
-  rating: number ;
-  review: string;
-};
-
-type TRatingOption = {
-  value: string;
-  title: string;
-};
-
-const ratingOptions: TRatingOption[] = [
-  { value: '5', title: 'perfect' },
-  { value: '4', title: 'good' },
-  { value: '3', title: 'not bad' },
-  { value: '2', title: 'badly' },
-  { value: '1', title: 'terribly' },
-];
 
 function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
   const [formData, setFormData] = useState<TFormData>({
