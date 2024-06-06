@@ -1,15 +1,23 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
 import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const';
+import { addCommentAction } from '../../redux/slices/comments/commentThunks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { selectCommentsStatus } from '../../redux/slices/comments/commentSlice';
+import Spinner from '../spinner/spinner';
+
+type TOfferFromProps = {
+  offerId: string;
+};
 
 type TFormData = {
-  rating: string | null;
+  rating: number ;
   review: string;
-}
+};
 
 type TRatingOption = {
   value: string;
   title: string;
-}
+};
 
 const ratingOptions: TRatingOption[] = [
   { value: '5', title: 'perfect' },
@@ -19,11 +27,15 @@ const ratingOptions: TRatingOption[] = [
   { value: '1', title: 'terribly' },
 ];
 
-function OfferCommentForm(): JSX.Element {
+function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
   const [formData, setFormData] = useState<TFormData>({
-    rating: null,
+    rating: 0,
     review: '',
   });
+
+  const dispatch = useAppDispatch();
+
+  const status = useAppSelector(selectCommentsStatus);
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,13 +47,41 @@ function OfferCommentForm(): JSX.Element {
     }));
   };
 
+
   const isValid =
     !formData.rating ||
     formData.review.length < MIN_REVIEW_LENGTH ||
     formData.review.length > MAX_REVIEW_LENGTH;
 
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (isValid) {
+      return;
+    }
+
+    dispatch(addCommentAction({
+      offerId: offerId,
+      body: {
+        comment: formData.review,
+        rating: Number(formData.rating),
+      }
+    }));
+
+    if (status.isLoading) {
+      <Spinner />;
+    }
+
+    if (status.isSuccess) {
+      setFormData({
+        rating: 0,
+        review: '',
+      });
+    }
+  };
+
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -55,7 +95,7 @@ function OfferCommentForm(): JSX.Element {
               id={`${option.value}-stars`}
               type="radio"
               onChange={handleInputChange}
-              checked={formData.rating === option.value}
+              checked={formData.rating === +option.value}
             />
             <label
               htmlFor={`${option.value}-stars`}

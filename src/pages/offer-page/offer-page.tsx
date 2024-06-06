@@ -16,13 +16,15 @@ import { selectComments } from '../../redux/slices/comments/commentSlice';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
 import Spinner from '../../components/spinner/spinner';
 import NotFoundPage from '../not-found-page/not-found-page';
-import { COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
+import { AuthorizationStatus, COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
 import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
+import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
 
 
 function OfferPage(): JSX.Element {
   const { offerId } = useParams<{ offerId: string }>();
   const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const status = useAppSelector(selectRequestStatus);
   const offerInfo = useAppSelector(selectOffer);
   const nearestOffers = useAppSelector(selectNearByOffers);
@@ -162,7 +164,7 @@ function OfferPage(): JSX.Element {
                   <span className="reviews__amount">{comments.length}</span>
                 </h2>
                 <ListReviews reviews={tenComments} />
-                <OfferCommentForm />
+                {authorizationStatus === AuthorizationStatus.Auth && <OfferCommentForm offerId={offerId ?? ''} />}
               </section>
             </div>
           </div>
