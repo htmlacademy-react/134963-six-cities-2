@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace, RequestStatus } from '../../../const';
 import { UserData } from '../../../types/auth';
 import { checkAuth, loginAction, logoutAction } from './userThunks';
@@ -58,6 +58,16 @@ const userSlice = createSlice({
 export const selectAuthorizationStatus = (state: { [NameSpace.User]: UserState }): AuthorizationStatus => state[NameSpace.User].authorizationStatus;
 export const selectUserData = (state: { [NameSpace.User]: UserState }): UserData | null => state[NameSpace.User].userData;
 export const selectRequestStatus = (state: { [NameSpace.User]: UserState }): RequestStatus => state[NameSpace.User].requestStatus;
+
+export const selectLoginStatus = createSelector(
+  [selectRequestStatus],
+  (status) => ({
+    isLoading: status === RequestStatus.Loading,
+    isSuccess: status === RequestStatus.Success,
+    isError: status === RequestStatus.Failed,
+    isIdle: status === RequestStatus.Idle,
+  })
+);
 
 export default userSlice.reducer;
 export {userSlice};
