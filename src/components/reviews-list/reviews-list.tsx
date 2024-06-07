@@ -1,8 +1,8 @@
-import { Review } from '../../types/comments';
+import { Comment } from '../../types/comments';
 import ReviewItem from '../reviews-item/reviews-item';
 
 type TListReviews = {
-    reviews: Review[];
+    reviews: Comment[];
 }
 
 function ListReviews({reviews}: TListReviews): JSX.Element {
