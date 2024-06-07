@@ -1,8 +1,8 @@
-import { Review } from '../../types/comments';
+import { Comment } from '../../types/comments';
 import { calculateRatingPercentage, formatToMonthYear, formatDateToISO } from '../../utils/utils';
 
 type TReviewItem ={
-    review: Review;
+    review: Comment;
 }
 
 function ReviewItem({review}: TReviewItem): JSX.Element {
