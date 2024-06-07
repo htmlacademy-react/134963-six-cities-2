@@ -12,3 +12,4 @@ export const fetchOffers = createAsyncThunk<FullOffer[], undefined, { dispatch: 
     return data;
   }
 );
+

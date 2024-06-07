@@ -8,27 +8,9 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-import { FullOffer } from '../../types/offer';
-import { Review } from '../../types/reviews';
-import { useAppSelector } from '../../hooks';
-import Spinner from '../spinner/spinner';
 import { Routes, Route } from 'react-router-dom';
 
-type TAppProps = {
-  offers: FullOffer[];
-  reviews: Review[];
-};
-
-function App({ offers, reviews }: TAppProps): JSX.Element {
-  const { isLoading, error } = useAppSelector((state) => state);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+function App(): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -39,14 +21,14 @@ function App({ offers, reviews }: TAppProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <FavoritesPage offers={offers} />
+                <FavoritesPage offers={[]} />
               </PrivateRoute>
             }
           />
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route
-            path={`${AppRoute.Offer}/:id`}
-            element={<OfferPage offers={offers} reviews={reviews} />}
+            path={`${AppRoute.Offer}/:offerId`}
+            element={<OfferPage />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

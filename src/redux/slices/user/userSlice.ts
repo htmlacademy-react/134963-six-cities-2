@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, RequestStatus } from '../../../const';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { AuthorizationStatus, NameSpace, RequestStatus } from '../../../const';
 import { UserData } from '../../../types/auth';
 import { checkAuth, loginAction, logoutAction } from './userThunks';
+
 export interface UserState {
   authorizationStatus: AuthorizationStatus;
   userData: UserData | null;
@@ -15,7 +16,7 @@ const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: NameSpace.User,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -54,8 +55,19 @@ const userSlice = createSlice({
   }
 });
 
-export const selectAuthorizationStatus = (state: { user: UserState }) => state.user.authorizationStatus;
-export const selectUserData = (state: { user: UserState }) => state.user.userData;
-export const selectRequestStatus = (state: { user: UserState }) => state.user.requestStatus;
+export const selectAuthorizationStatus = (state: { [NameSpace.User]: UserState }): AuthorizationStatus => state[NameSpace.User].authorizationStatus;
+export const selectUserData = (state: { [NameSpace.User]: UserState }): UserData | null => state[NameSpace.User].userData;
+export const selectRequestStatus = (state: { [NameSpace.User]: UserState }): RequestStatus => state[NameSpace.User].requestStatus;
 
+export const selectLoginStatus = createSelector(
+  [selectRequestStatus],
+  (status) => ({
+    isLoading: status === RequestStatus.Loading,
+    isSuccess: status === RequestStatus.Success,
+    isError: status === RequestStatus.Failed,
+    isIdle: status === RequestStatus.Idle,
+  })
+);
+
+export default userSlice.reducer;
 export {userSlice};

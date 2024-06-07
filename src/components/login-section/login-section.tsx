@@ -1,14 +1,15 @@
 import { FormEvent, useRef, useState } from 'react';
 import { emailRegex, passwordRegex } from '../../const';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../redux/slices/user/userThunks';
+import { selectLoginStatus } from '../../redux/slices/user/userSlice';
 
 function LoginSection() {
   const [isFormValid, setIsFormValid] = useState(false);
   const loginRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
   const dispatch = useAppDispatch();
+  const {isLoading} = useAppSelector(selectLoginStatus);
 
   const handleInputChange = () => {
     if (loginRef.current && passwordRef.current) {
@@ -74,9 +75,9 @@ function LoginSection() {
         <button
           className="login__submit form__submit button"
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isFormValid || isLoading}
         >
-          Sign in
+          {isLoading ? 'Loading...' : 'Sign in'}
         </button>
       </form>
     </section>

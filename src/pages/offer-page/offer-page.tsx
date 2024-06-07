@@ -1,7 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { FullOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
-import { Review } from '../../types/reviews';
 import {
   calculateRatingPercentage,
   capitalizeFirstLetter,
@@ -11,16 +9,45 @@ import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { selectOffer, selectNearByOffers, selectRequestStatus } from '../../redux/slices/offer/offerSlice';
+import { selectComments } from '../../redux/slices/comments/commentSlice';
+import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
+import Spinner from '../../components/spinner/spinner';
+import NotFoundPage from '../not-found-page/not-found-page';
+import { AuthorizationStatus, COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
+import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
+import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
 
-type TOfferPageProp = {
-  offers: FullOffer[];
-  reviews: Review[];
-};
 
-function OfferPage({ offers, reviews }: TOfferPageProp): JSX.Element {
-  const { id } = useParams();
-  const offerInfo = offers.find((offer) => offer.id === id);
-  const nearestOffers = offers.slice(0, 3);
+function OfferPage(): JSX.Element {
+  const { offerId } = useParams<{ offerId: string }>();
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
+  const status = useAppSelector(selectRequestStatus);
+  const offerInfo = useAppSelector(selectOffer);
+  const nearestOffers = useAppSelector(selectNearByOffers);
+  const comments = useAppSelector(selectComments);
+
+  useEffect(() => {
+    if (offerId) {
+      dispatch(fetchOfferByIdAction(offerId));
+      dispatch(fetchNearByOffersAction(offerId));
+      dispatch(fetchCommentsAction(offerId));
+    }
+  }, [dispatch, fetchOfferByIdAction, fetchNearByOffersAction, offerId]);
+
+  if (status.isLoading || status.isIdle) {
+    return <Spinner />;
+  }
+
+  if (status.isError) {
+    return <NotFoundPage />;
+  }
+
+  const threeNearOffers = nearestOffers.slice(0, NEAR_OFFERS_COUNT);
+  const tenComments = comments.slice(0, COMMENTS_COUNT);
 
   return (
     <div className="page">
@@ -134,17 +161,17 @@ function OfferPage({ offers, reviews }: TOfferPageProp): JSX.Element {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
                   Reviews &middot;{' '}
-                  <span className="reviews__amount">{reviews.length}</span>
+                  <span className="reviews__amount">{comments.length}</span>
                 </h2>
-                <ListReviews reviews={reviews} />
-                <OfferCommentForm />
+                <ListReviews reviews={tenComments} />
+                {authorizationStatus === AuthorizationStatus.Auth && <OfferCommentForm offerId={offerId ?? ''} />}
               </section>
             </div>
           </div>
           <Map
-            offers={nearestOffers}
+            offers={threeNearOffers}
             mapClass="offer__map"
-            city={nearestOffers[0].city}
+            city={threeNearOffers[0].city}
             activeOfferId={null}
           />
         </section>
@@ -154,7 +181,7 @@ function OfferPage({ offers, reviews }: TOfferPageProp): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <OfferList
-              offers={nearestOffers}
+              offers={threeNearOffers}
               listBlock="near-places__list"
               block="near-places"
             />
