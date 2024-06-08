@@ -48,7 +48,7 @@ function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
     }));
 
     if (status.isLoading) {
-      <Spinner />;
+      return <Spinner />;
     }
 
     if (status.isSuccess) {

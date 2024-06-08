@@ -19,6 +19,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import { AuthorizationStatus, COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
 import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
 import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
+import clsx from 'clsx';
 
 
 function OfferPage(): JSX.Element {
@@ -36,7 +37,7 @@ function OfferPage(): JSX.Element {
       dispatch(fetchNearByOffersAction(offerId));
       dispatch(fetchCommentsAction(offerId));
     }
-  }, [dispatch, fetchOfferByIdAction, fetchNearByOffersAction, offerId]);
+  }, [dispatch, offerId]);
 
   if (status.isLoading || status.isIdle) {
     return <Spinner />;
@@ -75,11 +76,10 @@ function OfferPage(): JSX.Element {
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{offerInfo?.title}</h1>
                 <button
-                  className={`offer__bookmark-button button ${
-                    offerInfo?.isFavorite
-                      ? 'offer__bookmark-button--active'
-                      : ''
-                  }`}
+                  className={clsx(
+                    'offer__bookmark-button button',
+                    offerInfo?.isFavorite && 'offer__bookmark-button--active'
+                  )}
                   type="button"
                 >
                   <svg className="offer__bookmark-icon" width="31" height="33">
