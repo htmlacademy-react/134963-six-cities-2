@@ -1,9 +1,8 @@
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react';
 import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH, ratingOptions } from '../../const';
 import { addCommentAction } from '../../redux/slices/comments/commentThunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectCommentsStatus } from '../../redux/slices/comments/commentSlice';
-import Spinner from '../spinner/spinner';
 import { TFormData, TOfferFromProps } from '../../types/offer-comment-form';
 
 
@@ -28,6 +27,14 @@ function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
     }));
   };
 
+  useEffect(()=>{
+    if (status.isSuccess){
+      setFormData({
+        rating: 0,
+        review: '',
+      });
+    }
+  }, [status]);
 
   const isValid =
     !formData.rating ||
@@ -48,16 +55,6 @@ function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
       }
     }));
 
-    if (status.isLoading) {
-      return <Spinner />;
-    }
-
-    if (status.isSuccess) {
-      setFormData({
-        rating: 0,
-        review: '',
-      });
-    }
   };
 
   return (
