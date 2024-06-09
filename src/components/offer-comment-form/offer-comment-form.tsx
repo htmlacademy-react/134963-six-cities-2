@@ -21,9 +21,10 @@ function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
+    const newValue = name === 'rating' ? parseInt(value, 10) : value;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
@@ -58,7 +59,6 @@ function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
       });
     }
   };
-
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>

@@ -11,7 +11,7 @@ import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { selectOffer, selectNearByOffers, selectRequestStatus } from '../../redux/slices/offer/offerSlice';
+import { selectOffer, selectNearByOffers, selectRequestStatus, selectNearbyStatus } from '../../redux/slices/offer/offerSlice';
 import { selectComments } from '../../redux/slices/comments/commentSlice';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
 import Spinner from '../../components/spinner/spinner';
@@ -27,6 +27,7 @@ function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const status = useAppSelector(selectRequestStatus);
+  const nearbyStatus = useAppSelector(selectNearbyStatus);
   const offerInfo = useAppSelector(selectOffer);
   const nearestOffers = useAppSelector(selectNearByOffers);
   const comments = useAppSelector(selectComments);
@@ -39,12 +40,12 @@ function OfferPage(): JSX.Element {
     }
   }, [dispatch, offerId]);
 
-  if (status.isLoading || status.isIdle) {
-    return <Spinner />;
-  }
-
   if (status.isError) {
     return <NotFoundPage />;
+  }
+
+  if (status.isLoading || status.isIdle || nearbyStatus.isLoading || !offerInfo) {
+    return <Spinner />;
   }
 
   const threeNearOffers = nearestOffers.slice(0, NEAR_OFFERS_COUNT);
