@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUserData } from '../../redux/slices/user/userSlice';
 import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
 import { selectFavoriteOffers } from '../../redux/slices/favorites/favoriteSlice';
+import { fetchOffers } from '../../redux/slices/offers/offersThunks';
+import { fetchFavoriteAction } from '../../redux/slices/favorites/favoriteThunks';
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -13,7 +15,11 @@ function Navigation(): JSX.Element {
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
 
   const handleLogout = () => {
-    dispatch(logoutAction());
+    dispatch(logoutAction())
+      .then(() => {
+        dispatch(fetchFavoriteAction());
+        dispatch(fetchOffers());
+      });
   };
 
   return (
