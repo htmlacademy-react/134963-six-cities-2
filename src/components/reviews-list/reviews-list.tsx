@@ -6,9 +6,12 @@ type TListReviews = {
 }
 
 function ListReviews({reviews}: TListReviews): JSX.Element {
+
+  const sortedReviews = [...reviews].reverse();
+
   return (
     <ul className="reviews__list">
-      {reviews.map((review) => <ReviewItem key={review.id} review={review}/>)}
+      {sortedReviews.map((review) => <ReviewItem key={review.id} review={review}/>)}
     </ul>
   );
 }

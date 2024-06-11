@@ -41,7 +41,7 @@ function Card({ offer, onMouseOver, block }: TCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <CardBookmarkButton isFavorite={isFavorite} />
+          <CardBookmarkButton isFavorite={isFavorite} offerId={offer.id} />
         </div>
         <CardRating rating={rating} />
         <h2 className="place-card__name">

@@ -4,10 +4,12 @@ import { logoutAction } from '../../redux/slices/user/userThunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUserData } from '../../redux/slices/user/userSlice';
 import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
+import { selectFavoriteOffers } from '../../redux/slices/favorites/favoriteSlice';
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
   const userData = useAppSelector(selectUserData);
+  const favoriteCount = useAppSelector(selectFavoriteOffers);
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
 
   const handleLogout = () => {
@@ -28,7 +30,7 @@ function Navigation(): JSX.Element {
                 <span className="header__user-name user__name">
                   {userData?.email}
                 </span>
-                <span className="header__favorite-count">3</span>
+                <span className="header__favorite-count">{favoriteCount.length}</span>
               </Link>
             </li>
             <li className="header__nav-item">

@@ -19,7 +19,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import { AuthorizationStatus, COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
 import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
 import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
-import clsx from 'clsx';
+import CardBookmarkButton from '../../components/card-bookmark-button/card-bookmark-button';
 
 
 function OfferPage(): JSX.Element {
@@ -76,18 +76,7 @@ function OfferPage(): JSX.Element {
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{offerInfo?.title}</h1>
-                <button
-                  className={clsx(
-                    'offer__bookmark-button button',
-                    offerInfo?.isFavorite && 'offer__bookmark-button--active'
-                  )}
-                  type="button"
-                >
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <CardBookmarkButton extraClass='offer' isFavorite={offerInfo.isFavorite} offerId={offerInfo.id} width={31} height={33}/>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

@@ -11,7 +11,8 @@ export enum ApiRoute {
   Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
-  Comments = '/comments'
+  Comments = '/comments',
+  Favorites = '/favorite',
 }
 
 export enum NameSpace {
@@ -19,7 +20,8 @@ export enum NameSpace {
   Offers = 'OFFERS',
   User = 'USER',
   Comments = 'COMMENTS',
-  Offer = 'OFFER'
+  Offer = 'OFFER',
+  Favorites = 'FAVORITES',
 }
 
 export enum AuthorizationStatus {
@@ -37,6 +39,7 @@ export const ratingOptions: TRatingOption[] = [
 ];
 
 export const enum RequestStatus { Idle, Loading, Success, Failed }
+export const enum FavoriteStatus { Removed, Added }
 
 export const MAX_RATING = 5;
 

@@ -6,9 +6,11 @@ import { store } from './redux';
 import { fetchOffers } from './redux/slices/offers/offersThunks';
 import { Toaster } from 'react-hot-toast';
 import { checkAuth } from './redux/slices/user/userThunks';
+import { fetchFavoriteAction } from './redux/slices/favorites/favoriteThunks';
 
 store.dispatch(checkAuth());
 store.dispatch(fetchOffers());
+store.dispatch(fetchFavoriteAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

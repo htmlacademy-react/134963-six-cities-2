@@ -23,6 +23,9 @@ const offersSlice = createSlice({
     setActiveOffer: (state, action: PayloadAction<string | null>) => {
       state.activeOfferId = action.payload;
     },
+    updateOffers: (state, action: PayloadAction<string>) => {
+      state.offers = state.offers.map((offer) => offer.id === action.payload ? { ...offer, isFavorite: !offer.isFavorite } : offer);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -44,6 +47,7 @@ export const selectActiveOfferId = (state: State) => state[NameSpace.Offers].act
 export const selectOfferStatus = (state: State) => state[NameSpace.Offers].status;
 
 export const {setActiveOffer} = offersSlice.actions;
+export const { updateOffers } = offersSlice.actions;
 export default offersSlice.reducer;
 export {offersSlice};
 
