@@ -6,7 +6,6 @@ import { fetchFavoriteAction, toggleFavoriteAction } from '../../redux/slices/fa
 import { getToken } from '../../services/token';
 import { useNavigate } from 'react-router-dom';
 import { updateOffers } from '../../redux/slices/offers/offersSlice';
-import Spinner from '../spinner/spinner';
 import { updateOfferFavoriteStatus } from '../../redux/slices/offer/offerSlice';
 
 type TCardBookmarkButtonProps = {
@@ -41,9 +40,6 @@ function CardBookmarkButton({ extraClass = 'place-card', isFavorite, offerId, wi
       });
   };
 
-  if (status.isLoading) {
-    return <Spinner />;
-  }
 
   return (
     <button
@@ -52,6 +48,7 @@ function CardBookmarkButton({ extraClass = 'place-card', isFavorite, offerId, wi
       })}
       type="button"
       onClick={handleBookmarkClick}
+      disabled = {status.isLoading}
     >
       <svg className={`${extraClass}__bookmark-icon`} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
