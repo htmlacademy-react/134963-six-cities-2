@@ -17,7 +17,7 @@ function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <Helmet>{'6 cities - Favorites'}</Helmet>
-      <Header showNavigation={false} />
+      <Header showNavigation />
       {hasFavorites ? (
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">

@@ -16,9 +16,11 @@ function Navigation(): JSX.Element {
 
   const handleLogout = () => {
     dispatch(logoutAction())
+      .unwrap()
       .then(() => {
         dispatch(fetchFavoriteAction());
         dispatch(fetchOffers());
+        window.location.href = AppRoute.Main;
       });
   };
 
@@ -36,13 +38,15 @@ function Navigation(): JSX.Element {
                 <span className="header__user-name user__name">
                   {userData?.email}
                 </span>
-                <span className="header__favorite-count">{favoriteCount.length}</span>
+                <span className="header__favorite-count">
+                  {favoriteCount.length}
+                </span>
               </Link>
             </li>
             <li className="header__nav-item">
-              <a className="header__nav-link" href="#" onClick={handleLogout}>
+              <Link className="header__nav-link" to= "#" onClick={handleLogout}>
                 <span className="header__signout">Sign out</span>
-              </a>
+              </Link>
             </li>
           </>
         ) : (

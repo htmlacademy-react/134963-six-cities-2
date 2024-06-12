@@ -54,7 +54,7 @@ function OfferPage(): JSX.Element {
   return (
     <div className="page">
       <Helmet>{'6 cities - Offer'}</Helmet>
-      <Header showNavigation={false} />
+      <Header showNavigation />
 
       <main className="page__main page__main--offer">
         <section className="offer">

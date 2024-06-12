@@ -40,6 +40,7 @@ const favoriteSlice = createSlice({
         state.status = RequestStatus.Success;
         const { offerId, status } = action.payload;
         const offerIndex = state.favorites.findIndex((offer) => offer.id === offerId);
+
         if (offerIndex !== -1) {
           state.favorites[offerIndex].isFavorite = status === FavoriteStatus.Added;
           state.favoriteStatus = status === FavoriteStatus.Added ? FavoriteStatus.Added : FavoriteStatus.Removed;
