@@ -7,6 +7,7 @@ import { getToken } from '../../services/token';
 import { useNavigate } from 'react-router-dom';
 import { updateOffers } from '../../redux/slices/offers/offersSlice';
 import { updateOfferFavoriteStatus } from '../../redux/slices/offer/offerSlice';
+import { toast } from 'react-hot-toast';
 
 type TCardBookmarkButtonProps = {
     extraClass?: 'offer' | 'place-card';
@@ -19,7 +20,6 @@ type TCardBookmarkButtonProps = {
 function CardBookmarkButton({ extraClass = 'place-card', isFavorite, offerId, width = 18, height = 19 }: TCardBookmarkButtonProps): JSX.Element {
   const token = getToken();
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectFavoriteRequestStatusDetails);
   const bookmarksLabel = `${isFavorite ? 'In' : 'To'} bookmarks`;
@@ -37,6 +37,8 @@ function CardBookmarkButton({ extraClass = 'place-card', isFavorite, offerId, wi
           dispatch(updateOffers(offerId));
           dispatch(updateOfferFavoriteStatus(offerId));
         }
+      }).catch(() => {
+        toast.error('An error occurred while updating the bookmark.');
       });
   };
 
