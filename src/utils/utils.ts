@@ -26,6 +26,11 @@ export function formatDateToISO(dateTime: string): string {
   return formattedDate;
 }
 
+export function getRandomLocation(locations: string[]): string {
+  const randomIndex = Math.floor(Math.random() * locations.length);
+  return locations[randomIndex];
+}
+
 export function getSortedOffers(offers: FullOffer[], sortType: string) {
   const sortedOffers = [...offers];
 

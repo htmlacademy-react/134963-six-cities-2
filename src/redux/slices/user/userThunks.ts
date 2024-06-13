@@ -5,11 +5,13 @@ import { Auth, UserData } from '../../../types/auth';
 import { dropToken, saveToken } from '../../../services/token';
 import { redirectToRoute } from '../../action/action';
 import { ApiRoute, AppRoute } from '../../../const';
+import { fetchFavoriteAction } from '../favorites/favoriteThunks';
 
 export const checkAuth = createAsyncThunk<UserData, undefined, { dispatch: AppDispatch; state: State; extra: AxiosInstance }>(
   'user/checkAuth',
-  async (_arg, { extra: api }) => {
+  async (_arg, { extra: api, dispatch }) => {
     const { data } = await api.get<UserData>(ApiRoute.Login);
+    dispatch(fetchFavoriteAction());
     return data;
   }
 );

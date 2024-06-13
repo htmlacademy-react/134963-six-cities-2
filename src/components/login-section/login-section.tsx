@@ -3,13 +3,15 @@ import { emailRegex, passwordRegex } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../redux/slices/user/userThunks';
 import { selectLoginStatus } from '../../redux/slices/user/userSlice';
+import { fetchFavoriteAction } from '../../redux/slices/favorites/favoriteThunks';
+import { fetchOffers } from '../../redux/slices/offers/offersThunks';
 
 function LoginSection() {
   const [isFormValid, setIsFormValid] = useState(false);
   const loginRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const {isLoading} = useAppSelector(selectLoginStatus);
+  const { isLoading } = useAppSelector(selectLoginStatus);
 
   const handleInputChange = () => {
     if (loginRef.current && passwordRef.current) {
@@ -35,7 +37,12 @@ function LoginSection() {
           email: login.value,
           password: password.value,
         })
-      );
+      )
+        .unwrap()
+        .then(() => {
+          dispatch(fetchFavoriteAction());
+          dispatch(fetchOffers());
+        });
     }
   };
 

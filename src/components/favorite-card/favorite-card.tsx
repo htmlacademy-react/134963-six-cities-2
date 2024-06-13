@@ -11,11 +11,10 @@ type TFavoriteCardProps = {
 
 function FavoriteCard({ offer }: TFavoriteCardProps): JSX.Element {
   const {
+    id,
     title,
     type,
     price,
-    city,
-    location,
     isFavorite,
     isPremium,
     rating,
@@ -46,17 +45,13 @@ function FavoriteCard({ offer }: TFavoriteCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <CardBookmarkButton isFavorite={isFavorite} />
+          <CardBookmarkButton isFavorite={isFavorite} offerId={id} />
         </div>
         <CardRating rating={rating} />
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}/${offer.id}`}> {capitalizeFirstLetter(title)} </Link>
         </h2>
-        <p className="place-card__type">{type}</p>
-        <p className="place-card__location">{city.name}</p>
-        <p className="place-card__coordinates">
-          {location.latitude}, {location.longitude}
-        </p>
+        <p className="place-card__type"> {capitalizeFirstLetter(type)}</p>
       </div>
     </article>
   );

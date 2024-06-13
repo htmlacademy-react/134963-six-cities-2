@@ -11,7 +11,7 @@ import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { selectOffer, selectNearByOffers, selectRequestStatus } from '../../redux/slices/offer/offerSlice';
+import { selectOffer, selectNearByOffers, selectRequestStatus, selectNearbyStatus } from '../../redux/slices/offer/offerSlice';
 import { selectComments } from '../../redux/slices/comments/commentSlice';
 import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
 import Spinner from '../../components/spinner/spinner';
@@ -19,6 +19,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import { AuthorizationStatus, COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
 import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
 import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
+import CardBookmarkButton from '../../components/card-bookmark-button/card-bookmark-button';
 
 
 function OfferPage(): JSX.Element {
@@ -26,6 +27,7 @@ function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const status = useAppSelector(selectRequestStatus);
+  const nearbyStatus = useAppSelector(selectNearbyStatus);
   const offerInfo = useAppSelector(selectOffer);
   const nearestOffers = useAppSelector(selectNearByOffers);
   const comments = useAppSelector(selectComments);
@@ -36,14 +38,14 @@ function OfferPage(): JSX.Element {
       dispatch(fetchNearByOffersAction(offerId));
       dispatch(fetchCommentsAction(offerId));
     }
-  }, [dispatch, fetchOfferByIdAction, fetchNearByOffersAction, offerId]);
-
-  if (status.isLoading || status.isIdle) {
-    return <Spinner />;
-  }
+  }, [dispatch, offerId]);
 
   if (status.isError) {
     return <NotFoundPage />;
+  }
+
+  if (status.isLoading || status.isIdle || nearbyStatus.isLoading || !offerInfo) {
+    return <Spinner />;
   }
 
   const threeNearOffers = nearestOffers.slice(0, NEAR_OFFERS_COUNT);
@@ -52,7 +54,7 @@ function OfferPage(): JSX.Element {
   return (
     <div className="page">
       <Helmet>{'6 cities - Offer'}</Helmet>
-      <Header showNavigation={false} />
+      <Header showNavigation />
 
       <main className="page__main page__main--offer">
         <section className="offer">
@@ -74,19 +76,7 @@ function OfferPage(): JSX.Element {
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{offerInfo?.title}</h1>
-                <button
-                  className={`offer__bookmark-button button ${
-                    offerInfo?.isFavorite
-                      ? 'offer__bookmark-button--active'
-                      : ''
-                  }`}
-                  type="button"
-                >
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <CardBookmarkButton extraClass='offer' isFavorite={offerInfo.isFavorite} offerId={offerInfo.id} width={31} height={33}/>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
