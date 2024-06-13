@@ -28,7 +28,7 @@ const favoriteSlice = createSlice({
         state.status = RequestStatus.Loading;
       })
       .addCase(fetchFavoriteAction.fulfilled, (state, action: PayloadAction<FullOffer[]>) => {
-        state.status = RequestStatus.Failed;
+        state.status = RequestStatus.Success;
         state.favorites = action.payload;
       })
       .addCase(fetchFavoriteAction.rejected, (state) => {
