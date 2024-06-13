@@ -20,7 +20,6 @@ function Navigation(): JSX.Element {
       .then(() => {
         dispatch(fetchFavoriteAction());
         dispatch(fetchOffers());
-        window.location.href = AppRoute.Main;
       });
   };
 

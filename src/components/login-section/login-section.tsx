@@ -11,7 +11,7 @@ function LoginSection() {
   const loginRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const {isLoading} = useAppSelector(selectLoginStatus);
+  const { isLoading } = useAppSelector(selectLoginStatus);
 
   const handleInputChange = () => {
     if (loginRef.current && passwordRef.current) {
@@ -37,10 +37,12 @@ function LoginSection() {
           email: login.value,
           password: password.value,
         })
-      ).then(() => {
-        dispatch(fetchFavoriteAction());
-        dispatch(fetchOffers());
-      });
+      )
+        .unwrap()
+        .then(() => {
+          dispatch(fetchFavoriteAction());
+          dispatch(fetchOffers());
+        });
     }
   };
 

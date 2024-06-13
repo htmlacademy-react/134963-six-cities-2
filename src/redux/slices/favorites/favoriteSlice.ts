@@ -36,15 +36,8 @@ const favoriteSlice = createSlice({
       .addCase(toggleFavoriteAction.pending, (state) => {
         state.status = RequestStatus.Loading;
       })
-      .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
+      .addCase(toggleFavoriteAction.fulfilled, (state) => {
         state.status = RequestStatus.Success;
-        const { offerId, status } = action.payload;
-        const offerIndex = state.favorites.findIndex((offer) => offer.id === offerId);
-
-        if (offerIndex !== -1) {
-          state.favorites[offerIndex].isFavorite = status === FavoriteStatus.Added;
-          state.favoriteStatus = status === FavoriteStatus.Added ? FavoriteStatus.Added : FavoriteStatus.Removed;
-        }
       })
       .addCase(toggleFavoriteAction.rejected, (state) => {
         state.status = RequestStatus.Failed;
