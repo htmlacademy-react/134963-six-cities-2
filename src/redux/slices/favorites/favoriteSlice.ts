@@ -1,19 +1,18 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FullOffer } from '../../../types/offer';
-import { RequestStatus, FavoriteStatus, NameSpace } from '../../../const';
+import { RequestStatus, NameSpace } from '../../../const';
 import { fetchFavoriteAction, toggleFavoriteAction } from './favoriteThunks';
 import { State } from '../../../types/state';
 
 interface FavoriteState {
   favorites: FullOffer[];
   status: RequestStatus;
-  favoriteStatus: FavoriteStatus;
+
 }
 
 const initialState: FavoriteState = {
   favorites: [],
   status: RequestStatus.Idle,
-  favoriteStatus: FavoriteStatus.Removed,
 };
 
 const favoriteSlice = createSlice({
@@ -47,7 +46,6 @@ const favoriteSlice = createSlice({
 
 export const selectFavoriteOffers = (state: State) => state[NameSpace.Favorites].favorites;
 export const selectFavoriteStatus = (state: State) => state[NameSpace.Favorites].status;
-export const selectToggleFavoriteStatus = (state: State) => state[NameSpace.Favorites].favoriteStatus;
 
 export const selectFavoriteRequestStatusDetails = createSelector(
   [selectFavoriteStatus],
