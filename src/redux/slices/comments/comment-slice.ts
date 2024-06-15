@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { addCommentAction, fetchCommentsAction } from './commentThunks';
+import { addCommentAction, fetchCommentsAction } from './comment-thunks';
 import { NameSpace, RequestStatus } from '../../../const';
 import { Comment } from '../../../types/comments';
 import { State } from '../../../types/state';

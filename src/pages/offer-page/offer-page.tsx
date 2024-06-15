@@ -11,14 +11,14 @@ import ListReviews from '../../components/reviews-list/reviews-list';
 import OfferList from '../../components/offer-list/offer-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { selectOffer, selectNearByOffers, selectRequestStatus, selectNearbyStatus } from '../../redux/slices/offer/offerSlice';
-import { selectComments } from '../../redux/slices/comments/commentSlice';
-import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offerThunks';
+import { selectOffer, selectNearByOffers, selectRequestStatus, selectNearbyStatus } from '../../redux/slices/offer/offer-slice';
+import { selectComments } from '../../redux/slices/comments/comment-slice';
+import { fetchOfferByIdAction, fetchNearByOffersAction } from '../../redux/slices/offer/offer-thunks';
 import Spinner from '../../components/spinner/spinner';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { AuthorizationStatus, COMMENTS_COUNT, NEAR_OFFERS_COUNT } from '../../const';
-import { fetchCommentsAction } from '../../redux/slices/comments/commentThunks';
-import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
+import { fetchCommentsAction } from '../../redux/slices/comments/comment-thunks';
+import { selectAuthorizationStatus } from '../../redux/slices/user/user-slice';
 import CardBookmarkButton from '../../components/card-bookmark-button/card-bookmark-button';
 
 

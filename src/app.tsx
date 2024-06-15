@@ -1,12 +1,12 @@
-import { AppRoute, AuthorizationStatus } from '../../const';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
-import MainPage from '../../pages/main-page/main-page';
-import FavoritesPage from '../../pages/favorites-page/favorites-page';
-import LoginPage from '../../pages/login-page/login-page';
-import OfferPage from '../../pages/offer-page/offer-page';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import PrivateRoute from '../private-route/private-route';
+import { AppRoute, AuthorizationStatus } from './const';
+import HistoryRouter from './components/history-route/history-route';
+import browserHistory from './browser-history';
+import MainPage from './pages/main-page/main-page';
+import FavoritesPage from './pages/favorites-page/favorites-page';
+import LoginPage from './pages/login-page/login-page';
+import OfferPage from './pages/offer-page/offer-page';
+import NotFoundPage from './pages/not-found-page/not-found-page';
+import PrivateRoute from './components/private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Routes, Route } from 'react-router-dom';
 

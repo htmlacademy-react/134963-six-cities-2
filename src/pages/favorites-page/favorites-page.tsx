@@ -4,7 +4,7 @@ import LocationItem from '../../components/location-item/location-item.tsx';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 import { useAppSelector } from '../../hooks/index.ts';
-import { selectFavoriteOffers } from '../../redux/slices/favorites/favoriteSlice.ts';
+import { selectFavoriteOffers } from '../../redux/slices/favorites/favorite-slice.ts';
 
 
 function FavoritesPage(): JSX.Element {

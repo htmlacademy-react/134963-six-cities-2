@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace, RequestStatus } from '../../../const';
 import { UserData } from '../../../types/auth';
-import { checkAuth, loginAction, logoutAction } from './userThunks';
+import { checkAuth, loginAction, logoutAction } from './user-thunks';
 
 export interface UserState {
   authorizationStatus: AuthorizationStatus;

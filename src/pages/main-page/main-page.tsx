@@ -5,7 +5,7 @@ import Cities from '../../components/cities/cities';
 import MainEmpty from '../../components/main-empty/main-empty';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCity } from '../../redux/slices/ui/ui';
-import { selectOffers, selectOffersFetchStatus } from '../../redux/slices/offers/offersSlice';
+import { selectOffers, selectOffersFetchStatus } from '../../redux/slices/offers/offers-slice';
 import { selectCity } from '../../redux/slices/ui/ui';
 import clsx from 'clsx';
 import Spinner from '../../components/spinner/spinner';

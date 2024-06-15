@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { logoutAction } from '../../redux/slices/user/userThunks';
+import { logoutAction } from '../../redux/slices/user/user-thunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectUserData } from '../../redux/slices/user/userSlice';
-import { selectAuthorizationStatus } from '../../redux/slices/user/userSlice';
-import { selectFavoriteOffers } from '../../redux/slices/favorites/favoriteSlice';
-import { fetchOffers } from '../../redux/slices/offers/offersThunks';
-import { fetchFavoriteAction } from '../../redux/slices/favorites/favoriteThunks';
+import { selectUserData } from '../../redux/slices/user/user-slice';
+import { selectAuthorizationStatus } from '../../redux/slices/user/user-slice';
+import { selectFavoriteOffers } from '../../redux/slices/favorites/favorite-slice';
+import { fetchOffers } from '../../redux/slices/offers/offers-thunks';
+import { fetchFavoriteAction } from '../../redux/slices/favorites/favorite-thunks';
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
