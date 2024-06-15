@@ -5,6 +5,7 @@ import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 import { useAppSelector } from '../../hooks/index.ts';
 import { selectFavoriteOffers } from '../../redux/slices/favorites/favorite-slice.ts';
+import clsx from 'clsx';
 
 
 function FavoritesPage(): JSX.Element {
@@ -15,7 +16,7 @@ function FavoritesPage(): JSX.Element {
   );
 
   return (
-    <div className="page">
+    <div className={clsx('page', !hasFavorites && 'page--favorites-empty')}>
       <Helmet>{'6 cities - Favorites'}</Helmet>
       <Header showNavigation />
       {hasFavorites ? (
