@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
+import App from './app';
 import { Provider } from 'react-redux';
 import { store } from './redux';
 import { fetchOffers } from './redux/slices/offers/offers-thunks';
