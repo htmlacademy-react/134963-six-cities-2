@@ -1,4 +1,3 @@
-// LoginPage.tsx
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import LoginSection from '../../components/login-section/login-section';

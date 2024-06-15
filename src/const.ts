@@ -30,7 +30,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const ratingOptions: TRatingOption[] = [
+export const RATING_OPTIONS: TRatingOption[] = [
   { value: '5', title: 'perfect' },
   { value: '4', title: 'good' },
   { value: '3', title: 'not bad' },
@@ -52,8 +52,8 @@ export const BACKEND_URL = 'https://13.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
 export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
 
-export const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-export const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/;
+export const EMAIL_REGEX = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+export const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/;
 
 export const NEAR_OFFERS_COUNT = 3;
 export const COMMENTS_COUNT = 10;

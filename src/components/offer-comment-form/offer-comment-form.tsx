@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react';
-import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH, ratingOptions } from '../../const';
+import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH, RATING_OPTIONS } from '../../const';
 import { addCommentAction } from '../../redux/slices/comments/comment-thunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectCommentsStatus } from '../../redux/slices/comments/comment-slice';
@@ -63,7 +63,7 @@ function OfferCommentForm({ offerId }: TOfferFromProps): JSX.Element {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        {ratingOptions.map((option) => (
+        {RATING_OPTIONS.map((option) => (
           <Fragment key={option.value}>
             <input
               className="form__rating-input visually-hidden"
