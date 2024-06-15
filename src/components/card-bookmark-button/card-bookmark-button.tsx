@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectFavoriteRequestStatusDetails } from '../../redux/slices/favorites/favoriteSlice';
+import { selectFavoriteRequestStatusDetails } from '../../redux/slices/favorites/favorite-slice';
 import { AppRoute, FavoriteStatus } from '../../const';
-import { fetchFavoriteAction, toggleFavoriteAction } from '../../redux/slices/favorites/favoriteThunks';
+import { fetchFavoriteAction, toggleFavoriteAction } from '../../redux/slices/favorites/favorite-thunks';
 import { getToken } from '../../services/token';
 import { useNavigate } from 'react-router-dom';
-import { updateOffers } from '../../redux/slices/offers/offersSlice';
-import { updateOfferFavoriteStatus } from '../../redux/slices/offer/offerSlice';
+import { updateOffers } from '../../redux/slices/offers/offers-slice';
+import { updateOfferFavoriteStatus } from '../../redux/slices/offer/offer-slice';
 import { toast } from 'react-hot-toast';
 
 type TCardBookmarkButtonProps = {

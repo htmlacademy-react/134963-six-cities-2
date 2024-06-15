@@ -2,7 +2,7 @@ import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { NameSpace, RequestStatus } from '../../../const';
 import { FullOffer } from '../../../types/offer';
 import { Comment } from '../../../types/comments';
-import { fetchOfferByIdAction, fetchNearByOffersAction } from './offerThunks';
+import { fetchOfferByIdAction, fetchNearByOffersAction } from './offer-thunks';
 import { State } from '../../../types/state';
 
 export interface OfferState {

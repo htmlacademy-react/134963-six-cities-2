@@ -1,7 +1,7 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FullOffer } from '../../../types/offer';
 import { RequestStatus, NameSpace } from '../../../const';
-import { fetchFavoriteAction, toggleFavoriteAction } from './favoriteThunks';
+import { fetchFavoriteAction, toggleFavoriteAction } from './favorite-thunks';
 import { State } from '../../../types/state';
 
 interface FavoriteState {

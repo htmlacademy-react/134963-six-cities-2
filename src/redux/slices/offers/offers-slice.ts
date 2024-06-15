@@ -1,6 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FullOffer } from '../../../types/offer';
-import { fetchOffers } from './offersThunks';
+import { fetchOffers } from './offers-thunks';
 import { NameSpace, RequestStatus } from '../../../const';
 import { State } from '../../../types/state';
 

@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './redux';
-import { fetchOffers } from './redux/slices/offers/offersThunks';
+import { fetchOffers } from './redux/slices/offers/offers-thunks';
 import { Toaster } from 'react-hot-toast';
-import { checkAuth } from './redux/slices/user/userThunks';
+import { checkAuth } from './redux/slices/user/user-thunks';
 
 store.dispatch(checkAuth());
 store.dispatch(fetchOffers());

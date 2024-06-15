@@ -1,10 +1,10 @@
 import { FormEvent, useRef, useState } from 'react';
 import { emailRegex, passwordRegex } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { loginAction } from '../../redux/slices/user/userThunks';
-import { selectLoginStatus } from '../../redux/slices/user/userSlice';
-import { fetchFavoriteAction } from '../../redux/slices/favorites/favoriteThunks';
-import { fetchOffers } from '../../redux/slices/offers/offersThunks';
+import { loginAction } from '../../redux/slices/user/user-thunks';
+import { selectLoginStatus } from '../../redux/slices/user/user-slice';
+import { fetchFavoriteAction } from '../../redux/slices/favorites/favorite-thunks';
+import { fetchOffers } from '../../redux/slices/offers/offers-thunks';
 
 function LoginSection() {
   const [isFormValid, setIsFormValid] = useState(false);

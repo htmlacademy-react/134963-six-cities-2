@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react';
 import { MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH, ratingOptions } from '../../const';
-import { addCommentAction } from '../../redux/slices/comments/commentThunks';
+import { addCommentAction } from '../../redux/slices/comments/comment-thunks';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectCommentsStatus } from '../../redux/slices/comments/commentSlice';
+import { selectCommentsStatus } from '../../redux/slices/comments/comment-slice';
 import { TFormData, TOfferFromProps } from '../../types/offer-comment-form';
 
 
